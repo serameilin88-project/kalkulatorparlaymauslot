@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MAUSLOT — Kalkulator Parlay</title>
+
+ <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&display=swap" rel="stylesheet">
+
+<style>
+
+
+
+:root{
+  --bg:#06162f;
+  --card:#0c234a;
+  --gold:#f5c542;
+  --blue:#60a5fa;
+  --green:#22c55e;
+  --text:#ffffff;
+  --muted:rgba(255,255,255,.75);
+}
+.field-center{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  margin-bottom:14px;
+}
+
+.field-center label{
+  width:100%;
+  max-width:320px;
+  text-align:center;   /* ⬅️ INI KUNCI */
+  margin-bottom:6px;
+}
+
+.field-center input{
+  width:100%;
+  max-width:320px;
+  text-align:center;   /* ⬅️ INI KUNCI */
+}
+
+body{
+  margin:0;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background-image: url("./bg-mauslot.jpg");
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+  font-family:Arial, sans-serif;
+  color:var(--text);
+}
+
+.card{
+  width:380px;
+  background:rgba(255, 255, 255, 0.22);
+
+  backdrop-filter: blur(30px)saturate(150%);
+  -webkit-backdrop-filter: blur(30px)saturate(150%); /* WAJIB */
+
+  padding:22px;
+  border-radius:22px;
+  box-shadow:0 20px 40px rgba(0,0,0,.35),
+    0 0 35px rgba(120,180,255,.35);
+  border:1px solid rgba(255,255,255,.25);
+}
+
+.logo{
+  text-align:center;
+  margin-bottom:10px;
+}
+
+.logo img{
+  height:50px;
+}
+
+h1{
+  text-align:center;
+  font-size:18px;
+  margin:6px 0 14px;
+  letter-spacing:.5px;
+}
+
+label{
+  font-size:13px;
+  color:var(--muted);
+}
+
+input{
+  width:100%;
+  padding:12px;
+  margin-top:6px;
+  border-radius:12px;
+  border:none;
+  font-size:15px;
+  outline:none;
+}
+
+.odds-row{
+  display:flex;
+  gap:8px;
+  margin-top:8px;
+}
+
+button{
+   width:100%;
+  padding:14px;
+  margin-top:6px;
+  border:none;
+ border-radius:14px;
+  border:1px solid rgba(255,255,255,.25);
+  background:rgba(255,255,255,.95);
+   font-size:15px;
+  font-weight:600;
+  text-align:center;
+  cursor:pointer;
+ outline:none;
+  transition:all .25s ease;
+}
+
+.add{
+  background:linear-gradient(135deg, var(--blue), #93c5fd);
+  color:#061021;
+}
+
+.calc{
+  background:linear-gradient(135deg, var(--gold), #ffd777);
+  color:#061021;
+}
+
+.result{
+  margin-top:14px;
+  background:#06162f;
+  padding:14px;
+  border-radius:14px;
+  font-size:14px;
+  line-height:1.5;
+}
+
+.result b{
+  color:var(--gold);
+}
+
+.note{
+  font-size:12px;
+  text-align:center;
+  margin-top:10px;
+  color:var(--muted);
+}
+/* =========================
+   NEON SIGN JUDUL MAUSLOT
+   ========================= */
+.neon-sign{
+  text-align:center;
+  font-family:'Orbitron', sans-serif;
+  font-size:22px;
+  font-weight:700;
+  letter-spacing:2px;
+  margin:12px 0 18px;
+  color:#cce7ff;
+
+  text-shadow:
+    0 0 6px #4da3ff,
+    0 0 12px #4da3ff,
+    0 0 24px #1e90ff,
+    0 0 48px #1e90ff,
+    0 0 90px rgba(30,144,255,.9);
+
+  animation: neonFlicker 3.5s infinite;
+}
+
+@keyframes neonFlicker{
+  0%,18%,22%,25%,53%,57%,100%{
+    opacity:1;
+  }
+  20%,24%,55%{
+    opacity:.35;
+  }
+}
+
+</style>
+
+
+
+</head>
+
+
+
+
+<body>
+  <div class="card">
+
+    <!-- LOGO -->
+    <div class="logo neon-logo">
+     <img src="./logo-mauslot.gif" alt="MAUSLOT" width="330">
+    </div>
+
+  <h1 class="neon-sign">KALKULATOR PARLAY MAUSLOT</h1>
+
+  <div class="field-center">
+  <label>Stake / Modal</label>
+  <input type="number" id="stake" placeholder="Contoh: 100000">
+</div>
+
+  <label style="margin-top:10px;display:block">Odds Parlay</label>
+  <div id="oddsList">
+    <div class="odds-row">
+      <input type="number" step="0.01" placeholder="Odds 1">
+      <input type="number" step="0.01" placeholder="Odds 2">
+    </div>
+  </div>
+
+  <button class="add" onclick="addOdds()">➕ Tambah Odds</button>
+  <button class="calc" onclick="calculate()">🔥 Hitung Parlay</button>
+  <button class="btn-back" onclick="goHome()">
+  ⬅️ Kembali ke Menu Utama
+</button>
+
+<script>
+function goHome(){
+  window.location.href = "index.html";
+}
+</script>
+  <div class="result" id="result">
+    <b>Total Odds:</b> -<br>
+    <b>Potensi Menang:</b> -
+  </div>
+
+  <div class="note">
+    *Simulasi parlay • Gunakan dengan bijak
+  </div>
+</div>
+
+
+
+<script>
+function addOdds(){
+  const row = document.createElement("div");
+  row.className = "odds-row";
+  row.innerHTML = `
+    <input type="number" step="0.01" placeholder="Odds">
+    <input type="number" step="0.01" placeholder="Odds">
+    <button class="remove" onclick="removeOdds(this)">✖</button>
+  `;
+  document.getElementById("oddsList").appendChild(row);
+}
+
+function removeOdds(btn){
+  const rows = document.querySelectorAll(".odds-row");
+  if(rows.length <= 1){
+    alert("Minimal 2 odds untuk parlay");
+    return;
+  }
+  btn.parentElement.remove();
+}
+
+function calculate(){
+  const stake = parseFloat(document.getElementById("stake").value);
+  if(!stake || stake <= 0){
+    alert("Masukkan stake yang benar");
+    return;
+  }
+
+  let totalOdds = 1;
+  let validOdds = 0;
+
+  document.querySelectorAll("#oddsList input").forEach(input=>{
+    const val = parseFloat(input.value);
+    if(val && val > 1){
+      totalOdds *= val;
+      validOdds++;
+    }
+  });
+
+  if(validOdds < 2){
+    alert("Minimal 2 odds untuk parlay");
+    return;
+  }
+
+  const payout = stake * totalOdds;
+
+  document.getElementById("result").innerHTML = `
+    <b>Total Odds:</b> ${totalOdds.toFixed(2)}<br>
+    <b>Potensi Menang:</b> Rp ${payout.toLocaleString("id-ID")}
+  `;
+}
+</script>
+
+</body>
+</html>
+
+
