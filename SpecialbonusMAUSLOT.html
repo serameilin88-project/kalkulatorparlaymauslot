@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Menu Bonus</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #06162f;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .bonus-menu {
+    background: #0c234a;
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 0 15px rgba(0,0,0,0.5);
+  }
+
+  .bonus-menu h1 {
+    margin-bottom: 20px;
+    color: #ffcc00;
+  }
+
+  .bonus-button {
+    display: block;
+    background: #ff9900;
+    color: #06162f;
+    border: none;
+    padding: 15px 30px;
+    margin: 10px auto;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: transform 0.2s, background 0.2s;
+  }
+
+  .bonus-button:hover {
+    background: #ffcc00;
+    transform: scale(1.05);
+  }
+
+  .bonus-info {
+    margin-top: 20px;
+    font-size: 18px;
+    display: none;
+    color: #00ffcc;
+  }
+</style>
+</head>
+<body>
+
+<div class="bonus-menu">
+  <h1>🎁 Menu Bonus 🎁</h1>
+  <button class="bonus-button" onclick="showBonus('FREECHIP 5.000 sudah menunggu! Download aplikasi sekarang & chip langsung masuk! 🚀')">Bonus Harian</button>
+  <button class="bonus-button" onclick="showBonus('Bonus Deposit 30% max 300K, berlaku hari ini! 💰')">Bonus Deposit</button>
+  <button class="bonus-button" onclick="showBonus('Jangan lewatkan Cashback Mingguan 10%! 🎉')">Cashback</button>
+  
+  <div class="bonus-info" id="bonusInfo"></div>
+</div>
+
+<script>
+  function showBonus(message) {
+    const infoDiv = document.getElementById('bonusInfo');
+    infoDiv.textContent = message;
+    infoDiv.style.display = 'block';
+  }
+</script>
+
+</body>
+</html>
