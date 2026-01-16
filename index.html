@@ -4,32 +4,29 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MAUSLOT</title>
+
 <style>
 * { box-sizing: border-box; margin:0; padding:0; }
 
-/* BODY & BACKGROUND */
+/* BODY */
 body {
   min-height:100vh;
   display:flex;
   justify-content:center;
   align-items:center;
   font-family:'Orbitron', sans-serif;
-  background-color:#06162f; /* fallback */
-  background-image: url("./bg-mauslot.jpg"); /* pastikan file ini ada di folder sama */
-  background-position:center;
-  background-size:cover;
-  background-repeat:no-repeat;
+  background:#06162f url("./bg-mauslot.jpg") center/cover no-repeat;
   overflow-x:hidden;
 }
 
-/* MENU CONTAINER */
+/* MENU */
 .menu {
   background: rgba(12,35,74,0.55);
   backdrop-filter: blur(25px);
   border-radius:24px;
   padding:40px;
   text-align:center;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.45);
+  box-shadow:0 20px 40px rgba(0,0,0,0.45);
   animation: fadeIn 1s ease;
 }
 
@@ -42,7 +39,7 @@ body {
   animation: neonFlicker 3s infinite;
 }
 
-/* BUTTONS */
+/* BUTTON */
 .menu button {
   width:260px;
   padding:14px;
@@ -52,7 +49,7 @@ body {
   font-size:16px;
   font-weight:600;
   cursor:pointer;
-  transition:0.3s;
+  transition:.3s;
   color:#061021;
 }
 
@@ -60,96 +57,150 @@ body {
   background: linear-gradient(135deg,#60a5fa,#1e90ff);
 }
 .btn-main:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 20px #60a5fa;
+  transform:scale(1.05);
+  box-shadow:0 0 20px #60a5fa;
 }
 
 .btn-play {
   background: linear-gradient(135deg,#facc15,#fde047);
 }
 .btn-play:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 20px #fde047;
+  transform:scale(1.05);
+  box-shadow:0 0 20px #fde047;
 }
 
-/* BALL ANIMATION */
+/* BALL */
 #ball {
   position: fixed;
   bottom: 90px;
   left: 50%;
   width: 60px;
   height: 60px;
-  background: url("https://upload.wikimedia.org/wikipedia/commons/d/d3/Soccerball.svg") no-repeat center/contain;
+  background:url("https://upload.wikimedia.org/wikipedia/commons/d/d3/Soccerball.svg") no-repeat center/contain;
   transform: translateX(-50%);
   opacity:0;
   pointer-events:none;
   z-index:9999;
 }
-#ball.kick {
-  animation: kickBall 0.8s ease-out forwards;
+#ball.kick { animation:kickBall .8s ease-out forwards; }
+
+/* BONUS MODAL */
+.bonus-modal {
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.65);
+  display:none;
+  justify-content:center;
+  align-items:flex-end;
+  z-index:9998;
+}
+
+.bonus-box {
+  background:#0c234a;
+  width:100%;
+  max-width:420px;
+  border-radius:22px 22px 0 0;
+  padding:25px;
+  animation:slideUp .4s ease;
+  color:#fff;
+}
+
+.bonus-box h2 {
+  text-align:center;
+  color:#facc15;
+  margin-bottom:20px;
+}
+
+.bonus-item {
+  background:rgba(255,255,255,.08);
+  padding:14px;
+  border-radius:14px;
+  margin-bottom:12px;
+  font-size:14px;
+}
+
+.close-bonus {
+  position:absolute;
+  right:20px;
+  top:12px;
+  font-size:22px;
+  cursor:pointer;
+  color:#facc15;
 }
 
 /* KEYFRAMES */
 @keyframes kickBall {
-  0% { transform:translateX(-50%) translateY(0) scale(1); opacity:1; }
-  60% { transform:translateX(200px) translateY(-140px) scale(1.1); opacity:1; }
-  100% { transform:translateX(420px) translateY(-260px) scale(0.6); opacity:0; }
+  0%{transform:translateX(-50%) translateY(0);opacity:1}
+  60%{transform:translateX(200px) translateY(-140px)}
+  100%{transform:translateX(420px) translateY(-260px);opacity:0}
 }
-
+@keyframes slideUp { from{transform:translateY(100%)} to{transform:translateY(0)} }
 @keyframes neonFlicker {
-  0%,18%,22%,25%,53%,57%,100%{opacity:1;}
-  20%,24%,55%{opacity:0.4;}
+  0%,18%,22%,25%,53%,57%,100%{opacity:1}
+  20%,24%,55%{opacity:.4}
 }
-
-@keyframes fadeIn {
-  0% {opacity:0; transform: translateY(20px);}
-  100% {opacity:1; transform: translateY(0);}
-}
+@keyframes fadeIn { from{opacity:0;transform:translateY(20px)} to{opacity:1} }
 
 /* RESPONSIVE */
 @media(max-width:600px){
-  .menu { padding:25px; width:90%; }
-  .menu img { width:200px; }
-  .menu button { width:90%; }
+  .menu{padding:25px;width:90%}
+  .menu img{width:200px}
+  .menu button{width:90%}
 }
 </style>
 </head>
+
 <body>
 
 <div class="menu">
-  <img src="logo-mauslot.gif" alt="MAUSLOT Logo">
+  <img src="logo-mauslot.gif">
   <h1>Selamat Datang di MAUSLOT</h1>
 
   <button class="btn-main" onclick="kickToCalc()">⚽ Masuk Kalkulator Parlay</button>
-  <button class="btn-play">🎁 Special Bonus MAUSLOT</button>
+  <button class="btn-play" onclick="openBonus()">🎁 Special Bonus MAUSLOT</button>
 </div>
 
 <div id="ball"></div>
-<audio id="kickSound" preload="auto">
+
+<!-- BONUS POPUP -->
+<div class="bonus-modal" id="bonusModal" onclick="closeBonus(event)">
+  <div class="bonus-box">
+    <span class="close-bonus" onclick="closeBonus()">✕</span>
+    <h2>🎁 Special Bonus MAUSLOT</h2>
+
+    <div class="bonus-item">🎁 FREECHIP 5.000<br>Download aplikasi & chip langsung masuk</div>
+    <div class="bonus-item">🌙 Bonus Jumat Berkah 30%<br>Depo 30K • Max 300K</div>
+    <div class="bonus-item">🔥 Weekend Slot NO DROP<br>Sabtu & Minggu 00.00–04.00</div>
+    <div class="bonus-item">🥱 Promo Gagal Tidur<br>Main Slot Berujung MAXWIN</div>
+  </div>
+</div>
+
+<audio id="kickSound">
   <source src="kick.mp3" type="audio/mpeg">
 </audio>
 
 <script>
 function kickToCalc(){
-  const ball = document.getElementById("ball");
-  const sound = document.getElementById("kickSound");
-
-  // animasi bola
+  const ball=document.getElementById("ball");
+  const sound=document.getElementById("kickSound");
   ball.classList.remove("kick");
   void ball.offsetWidth;
   ball.classList.add("kick");
-
-  // mainkan suara
-  sound.currentTime = 0;
+  sound.currentTime=0;
   sound.play();
+  setTimeout(()=>location.href="kalkulator.html",800);
+}
 
-  // pindah ke kalkulator setelah animasi
-  setTimeout(()=>{
-    window.location.href = "kalkulator.html";
-  }, 800);
+function openBonus(){
+  document.getElementById("bonusModal").style.display="flex";
+}
+
+function closeBonus(e){
+  if(!e || e.target.id==="bonusModal"){
+    document.getElementById("bonusModal").style.display="none";
+  }
 }
 </script>
 
 </body>
 </html>
-
