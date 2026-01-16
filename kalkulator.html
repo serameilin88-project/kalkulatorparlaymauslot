@@ -18,6 +18,10 @@
   --muted:rgba(255,255,255,.75);
 }
 
+*{
+  box-sizing:border-box;
+}
+
 body{
   margin:0;
   min-height:100vh;
@@ -31,13 +35,14 @@ body{
   justify-content:center;
   align-items:flex-start;
   padding:20px;
-  box-sizing:border-box;
 }
 
 .container{
   display:flex;
   gap:20px;
   flex-wrap: wrap;
+  width:100%;
+  max-width:900px;
 }
 
 /* CARD FORM */
@@ -102,7 +107,6 @@ input[type="number"], select {
   padding:10px;
   border-radius:8px;
   text-align:center;
-  box-sizing:border-box;
   width:100%;
   max-width:320px;
   height:42px;
@@ -114,10 +118,11 @@ input[type="number"], select {
   gap:8px;
   margin-top:8px;
   align-items:center;
+  flex-wrap:wrap;
 }
 
-.odds-row input { flex:1; }
-.odds-row select { flex:1; }
+.odds-row input { flex:1 1 120px; }
+.odds-row select { flex:1 1 120px; }
 
 /* Tombol remove */
 .remove{
@@ -129,7 +134,7 @@ input[type="number"], select {
   border:none;
   background:rgba(255,0,0,0.7);
   color:#fff;
-  flex:0;
+  flex:0 0 auto;
 }
 
 /* Tombol utama */
@@ -217,17 +222,32 @@ tr.total-row td{
   .container{
     flex-direction: column;
     align-items: center;
+    gap:12px;
   }
   .card, .table-container{
-    width:100%;
-    max-width:400px;
+    width:95%;
+    max-width:380px;
+    padding:15px;
   }
   .table-container{
-    order:2;   /* tabel selalu di bawah */
-    margin-top:20px;
+    order:2;
+    margin-top:15px;
   }
   .card{
-    order:1;    /* form selalu di atas */
+    order:1;
+  }
+  .odds-row{
+    gap:6px;
+  }
+  .odds-row input, .odds-row select{
+    flex:1 1 120px;
+  }
+  button{
+    padding:10px;
+    font-size:14px;
+  }
+  .note{
+    font-size:11px;
   }
 }
 </style>
@@ -235,30 +255,6 @@ tr.total-row td{
 <body>
 
 <div class="container">
-
-  <!-- TABEL PARLAY -->
-  <div class="table-container">
-    <h2>Detail Perhitungan Parlay</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Odds</th>
-          <th>Hasil</th>
-          <th>Total Odds</th>
-          <th>Payout</th>
-        </tr>
-      </thead>
-      <tbody id="tableBody"></tbody>
-      <tfoot id="tableFoot">
-        <tr class="total-row">
-          <td colspan="3">TOTAL</td>
-          <td id="totalOdds">0.00</td>
-          <td id="totalPayout">Rp 0</td>
-        </tr>
-      </tfoot>
-    </table>
-  </div>
 
   <!-- FORM PARLAY -->
   <div class="card">
@@ -295,6 +291,30 @@ tr.total-row td{
     <button class="btn-back" onclick="goHome()">⬅️ Kembali ke Menu Utama</button>
 
     <div class="note">*Simulasi parlay • Gunakan dengan bijak</div>
+  </div>
+
+  <!-- TABEL PARLAY -->
+  <div class="table-container">
+    <h2>Detail Perhitungan Parlay</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Odds</th>
+          <th>Hasil</th>
+          <th>Total Odds</th>
+          <th>Payout</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody"></tbody>
+      <tfoot>
+        <tr class="total-row">
+          <td colspan="3">TOTAL</td>
+          <td id="totalOdds">0.00</td>
+          <td id="totalPayout">Rp 0</td>
+        </tr>
+      </tfoot>
+    </table>
   </div>
 
 </div>
@@ -362,7 +382,7 @@ function calculate(){
     tableBody.appendChild(tr);
   });
 
-  // update total
+  // Update total parlay
   document.getElementById("totalOdds").textContent=cumulative.toFixed(2);
   document.getElementById("totalPayout").textContent=`Rp ${(stake*cumulative).toLocaleString("id-ID")}`;
 
