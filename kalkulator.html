@@ -5,12 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MAUSLOT — Kalkulator Parlay</title>
 
- <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&display=swap" rel="stylesheet">
 
 <style>
-
-
-
 :root{
   --bg:#06162f;
   --card:#0c234a;
@@ -20,6 +17,71 @@
   --text:#ffffff;
   --muted:rgba(255,255,255,.75);
 }
+
+body{
+  margin:0;
+  min-height:100vh;
+  font-family:Arial, sans-serif;
+  color:var(--text);
+  background-image: url("./bg-mauslot.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+  padding:20px;
+  box-sizing:border-box;
+}
+
+.container{
+  display:flex;
+  gap:20px;
+  flex-wrap:wrap;
+}
+
+/* CARD FORM */
+.card{
+  width:380px;
+  background:rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(30px)saturate(150%);
+  -webkit-backdrop-filter: blur(30px)saturate(150%);
+  padding:22px;
+  border-radius:22px;
+  box-shadow:0 20px 40px rgba(0,0,0,.35),
+             0 0 35px rgba(120,180,255,.35);
+  border:1px solid rgba(255,255,255,.25);
+  flex:1 1 380px;
+}
+
+.logo img{
+  height:50px;
+  display:block;
+  margin:0 auto 10px;
+}
+
+h1.neon-sign{
+  text-align:center;
+  font-family:'Orbitron', sans-serif;
+  font-size:22px;
+  font-weight:700;
+  letter-spacing:2px;
+  margin:12px 0 18px;
+  color:#60a5fa;
+  text-shadow:
+    0 0 6px #60a5fa,
+    0 0 12px #60a5fa,
+    0 0 24px #1e90ff,
+    0 0 48px #1e90ff,
+    0 0 90px rgba(30,144,255,.9);
+  animation: neonFlicker 3.5s infinite;
+}
+
+@keyframes neonFlicker{
+  0%,18%,22%,25%,53%,57%,100%{opacity:1;}
+  20%,24%,55%{opacity:.35;}
+}
+
 .field-center{
   display:flex;
   flex-direction:column;
@@ -30,119 +92,61 @@
 .field-center label{
   width:100%;
   max-width:320px;
-  text-align:center;   /* ⬅️ INI KUNCI */
+  text-align:center;
   margin-bottom:6px;
 }
 
-.field-center input{
+/* Semua input number & select sama ukuran */
+input[type="number"], select {
+  font-size:15px;
+  padding:10px;
+  border-radius:8px;
+  text-align:center;
+  box-sizing:border-box;
   width:100%;
   max-width:320px;
-  text-align:center;   /* ⬅️ INI KUNCI */
+  height:42px;
 }
 
-body{
-  margin:0;
-  min-height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background-image: url("./bg-mauslot.jpg");
-background-size: cover;
-background-position: center;
-background-repeat: no-repeat;
-  font-family:Arial, sans-serif;
-  color:var(--text);
-}
-
-.card{
-  width:380px;
-  background:rgba(255, 255, 255, 0.22);
-
-  backdrop-filter: blur(30px)saturate(150%);
-  -webkit-backdrop-filter: blur(30px)saturate(150%); /* WAJIB */
-
-  padding:22px;
-  border-radius:22px;
-  box-shadow:0 20px 40px rgba(0,0,0,.35),
-    0 0 35px rgba(120,180,255,.35);
-  border:1px solid rgba(255,255,255,.25);
-}
-
-.logo{
-  text-align:center;
-  margin-bottom:10px;
-}
-
-.logo img{
-  height:50px;
-}
-
-h1{
-  text-align:center;
-  font-size:18px;
-  margin:6px 0 14px;
-  letter-spacing:.5px;
-}
-
-label{
-  font-size:13px;
-  color:var(--muted);
-}
-
-input{
-  width:100%;
-  padding:12px;
-  margin-top:6px;
-  border-radius:12px;
-  border:none;
-  font-size:15px;
-  outline:none;
-}
-
+/* Odds row */
 .odds-row{
   display:flex;
   gap:8px;
   margin-top:8px;
+  align-items:center;
 }
 
+.odds-row input { flex:1; }
+.odds-row select { flex:1; }
+
+/* Tombol remove */
+.remove{
+  width:42px;
+  height:42px;
+  font-size:16px;
+  border-radius:8px;
+  cursor:pointer;
+  border:none;
+  background:rgba(255,0,0,0.7);
+  color:#fff;
+  flex:0;
+}
+
+/* Tombol utama */
 button{
-   width:100%;
-  padding:14px;
+  width:100%;
+  padding:12px;
   margin-top:6px;
   border:none;
- border-radius:14px;
-  border:1px solid rgba(255,255,255,.25);
-  background:rgba(255,255,255,.95);
-   font-size:15px;
-  font-weight:600;
-  text-align:center;
-  cursor:pointer;
- outline:none;
-  transition:all .25s ease;
-}
-
-.add{
-  background:linear-gradient(135deg, var(--blue), #93c5fd);
-  color:#061021;
-}
-
-.calc{
-  background:linear-gradient(135deg, var(--gold), #ffd777);
-  color:#061021;
-}
-
-.result{
-  margin-top:14px;
-  background:#06162f;
-  padding:14px;
   border-radius:14px;
-  font-size:14px;
-  line-height:1.5;
+  font-weight:600;
+  cursor:pointer;
+  font-size:15px;
 }
 
-.result b{
-  color:var(--gold);
-}
+.add{background:linear-gradient(135deg, var(--blue), #93c5fd); color:#061021;}
+.calc{background:linear-gradient(135deg, var(--gold), #ffd777); color:#061021;}
+.btn-back{background:#fff;color:#061021;}
 
 .note{
   font-size:12px;
@@ -150,99 +154,160 @@ button{
   margin-top:10px;
   color:var(--muted);
 }
-/* =========================
-   NEON SIGN JUDUL MAUSLOT
-   ========================= */
-.neon-sign{
+
+/* TABLE PARLAY */
+.table-container{
+  background:rgba(0,0,0,0.3);
+  border-radius:14px;
+  padding:20px;
+  min-width:400px;
+  max-height:500px;
+  overflow-y:auto;
+  flex:1 1 400px;
+  box-shadow:0 0 15px rgba(30,144,255,0.6);
+}
+
+.table-container h2{
   text-align:center;
-  font-family:'Orbitron', sans-serif;
-  font-size:22px;
-  font-weight:700;
-  letter-spacing:2px;
-  margin:12px 0 18px;
-  color:#cce7ff;
-
+  margin-bottom:10px;
+  color:#60a5fa;
   text-shadow:
-    0 0 6px #4da3ff,
-    0 0 12px #4da3ff,
-    0 0 24px #1e90ff,
-    0 0 48px #1e90ff,
-    0 0 90px rgba(30,144,255,.9);
-
-  animation: neonFlicker 3.5s infinite;
+    0 0 5px #60a5fa,
+    0 0 10px #60a5fa,
+    0 0 15px #1e90ff;
 }
 
-@keyframes neonFlicker{
-  0%,18%,22%,25%,53%,57%,100%{
-    opacity:1;
-  }
-  20%,24%,55%{
-    opacity:.35;
-  }
+table{
+  width:100%;
+  border-collapse:collapse;
+  color:#fff;
+  text-shadow: 0 0 3px #60a5fa;
 }
 
+th, td{
+  border:1px solid rgba(255,255,255,.3);
+  padding:6px 8px;
+  text-align:center;
+  font-size:14px;
+}
+
+th{
+  background:rgba(255,255,255,.1);
+}
+
+td.value{
+  color:#60a5fa;
+  text-shadow:0 0 4px #60a5fa,0 0 8px #1e90ff;
+}
+
+tr.total-row td{
+  font-weight:700;
+  color:#60a5fa;
+  text-shadow:0 0 5px #60a5fa,0 0 10px #1e90ff;
+  animation: neonFlickerTotal 2s infinite;
+}
+
+/* Neon flicker effect untuk total */
+@keyframes neonFlickerTotal{
+  0%, 18%, 22%, 25%, 53%, 57%, 100%{opacity:1;}
+  20%, 24%, 55%{opacity:0.35;}
+}
+
+/* Responsive mobile */
+@media (max-width:900px){
+  .container{
+    flex-direction:column;
+    align-items:center;
+  }
+  .table-container, .card{
+    width:100%;
+    max-width:400px;
+  }
+}
 </style>
-
-
-
 </head>
-
-
-
-
 <body>
+
+<div class="container">
+
+  <!-- TABEL PARLAY -->
+  <div class="table-container">
+    <h2>Detail Perhitungan Parlay</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Odds</th>
+          <th>Hasil</th>
+          <th>Total Odds</th>
+          <th>Payout</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody"></tbody>
+      <tfoot id="tableFoot">
+        <tr class="total-row">
+          <td colspan="3">TOTAL</td>
+          <td id="totalOdds">0.00</td>
+          <td id="totalPayout">Rp 0</td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <!-- FORM PARLAY -->
   <div class="card">
 
-    <!-- LOGO -->
     <div class="logo neon-logo">
-     <img src="./logo-mauslot.gif" alt="MAUSLOT" width="330">
+      <img src="./logo-mauslot.gif" alt="MAUSLOT">
     </div>
 
-  <h1 class="neon-sign">KALKULATOR PARLAY MAUSLOT</h1>
+    <h1 class="neon-sign">KALKULATOR PARLAY</h1>
 
-  <div class="field-center">
-  <label>Stake / Modal</label>
-  <input type="number" id="stake" placeholder="Contoh: 100000">
-</div>
-
-  <label style="margin-top:10px;display:block">Odds Parlay</label>
-  <div id="oddsList">
-    <div class="odds-row">
-      <input type="number" step="0.01" placeholder="Odds 1">
-      <input type="number" step="0.01" placeholder="Odds 2">
+    <div class="field-center">
+      <label>Stake / Modal</label>
+      <input type="number" id="stake" placeholder="Contoh: 100000">
     </div>
+
+    <label style="margin-top:10px;display:block">Odds Parlay</label>
+
+    <div id="oddsList">
+      <div class="odds-row">
+        <input type="number" step="0.01" placeholder="Odds">
+        <select class="result-type">
+          <option value="win">Menang</option>
+          <option value="half-win">Menang Setengah</option>
+          <option value="draw">Draw / Push</option>
+          <option value="half-lose">Kalah Setengah</option>
+          <option value="lose">Kalah</option>
+        </select>
+        <button class="remove" onclick="removeOdds(this)">✖</button>
+      </div>
+    </div>
+
+    <button class="add" onclick="addOdds()">➕ Tambah Odds</button>
+    <button class="calc" onclick="calculate()">🔥 Hitung Parlay</button>
+    <button class="btn-back" onclick="goHome()">⬅️ Kembali ke Menu Utama</button>
+
+    <div class="note">*Simulasi parlay • Gunakan dengan bijak</div>
   </div>
 
-  <button class="add" onclick="addOdds()">➕ Tambah Odds</button>
-  <button class="calc" onclick="calculate()">🔥 Hitung Parlay</button>
-  <button class="btn-back" onclick="goHome()">
-  ⬅️ Kembali ke Menu Utama
-</button>
-
-<script>
-function goHome(){
-  window.location.href = "index.html";
-}
-</script>
-  <div class="result" id="result">
-    <b>Total Odds:</b> -<br>
-    <b>Potensi Menang:</b> -
-  </div>
-
-  <div class="note">
-    *Simulasi parlay • Gunakan dengan bijak
-  </div>
 </div>
 
-
-
 <script>
+function goHome(){ window.location.href="index.html"; }
+
 function addOdds(){
   const row = document.createElement("div");
   row.className = "odds-row";
   row.innerHTML = `
     <input type="number" step="0.01" placeholder="Odds">
-    <input type="number" step="0.01" placeholder="Odds">
+    <select class="result-type">
+      <option value="win">Menang</option>
+      <option value="half-win">Menang Setengah</option>
+      <option value="draw">Draw / Push</option>
+      <option value="half-lose">Kalah Setengah</option>
+      <option value="lose">Kalah</option>
+    </select>
     <button class="remove" onclick="removeOdds(this)">✖</button>
   `;
   document.getElementById("oddsList").appendChild(row);
@@ -250,46 +315,55 @@ function addOdds(){
 
 function removeOdds(btn){
   const rows = document.querySelectorAll(".odds-row");
-  if(rows.length <= 1){
-    alert("Minimal 2 odds untuk parlay");
-    return;
-  }
+  if(rows.length <= 1){ alert("Minimal 1 odds untuk parlay"); return; }
   btn.parentElement.remove();
 }
 
 function calculate(){
   const stake = parseFloat(document.getElementById("stake").value);
-  if(!stake || stake <= 0){
-    alert("Masukkan stake yang benar");
-    return;
-  }
+  if(!stake || stake<=0){ alert("Masukkan stake yang benar"); return; }
 
-  let totalOdds = 1;
-  let validOdds = 0;
+  const rows = document.querySelectorAll(".odds-row");
+  let validOdds = 0, tableCumulative = 1;
 
-  document.querySelectorAll("#oddsList input").forEach(input=>{
-    const val = parseFloat(input.value);
-    if(val && val > 1){
-      totalOdds *= val;
-      validOdds++;
-    }
+  const tableBody = document.getElementById("tableBody");
+  tableBody.innerHTML = "";
+
+  rows.forEach((row,index)=>{
+    const odd=parseFloat(row.querySelector("input").value);
+    const result=row.querySelector(".result-type").value;
+    if(!odd || odd<=1) return;
+    validOdds++;
+
+    let appliedOdd=1;
+    if(result==="win") appliedOdd=odd;
+    else if(result==="half-win") appliedOdd=(odd+1)/2;
+    else if(result==="draw") appliedOdd=1;
+    else if(result==="half-lose") appliedOdd=0.5;
+    else if(result==="lose"){ tableCumulative=0; appliedOdd=0; }
+
+    tableCumulative *= appliedOdd;
+
+    const payout = stake*tableCumulative;
+
+    const tr=document.createElement("tr");
+    tr.innerHTML=`
+      <td>${index+1}</td>
+      <td>${odd.toFixed(2)}</td>
+      <td>${result.replace("-", " ").toUpperCase()}</td>
+      <td class="value">${tableCumulative.toFixed(2)}</td>
+      <td class="value">Rp ${payout.toLocaleString("id-ID")}</td>
+    `;
+    tableBody.appendChild(tr);
   });
 
-  if(validOdds < 2){
-    alert("Minimal 2 odds untuk parlay");
-    return;
-  }
+  // Update total dengan neon effect biru
+  document.getElementById("totalOdds").textContent = tableCumulative.toFixed(2);
+  document.getElementById("totalPayout").textContent = `Rp ${ (stake*tableCumulative).toLocaleString("id-ID") }`;
 
-  const payout = stake * totalOdds;
-
-  document.getElementById("result").innerHTML = `
-    <b>Total Odds:</b> ${totalOdds.toFixed(2)}<br>
-    <b>Potensi Menang:</b> Rp ${payout.toLocaleString("id-ID")}
-  `;
+  if(validOdds<1) alert("Masukkan minimal 1 odds untuk parlay");
 }
 </script>
 
 </body>
 </html>
-
-
