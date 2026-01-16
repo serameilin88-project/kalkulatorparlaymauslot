@@ -7,79 +7,78 @@
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&display=swap" rel="stylesheet">
 
 <style>
-/* ===== BODY & BACKGROUND ===== */
-body{
-  margin:0;
+/* RESET & BODY */
+* { box-sizing: border-box; margin:0; padding:0; }
+body {
   min-height:100vh;
   display:flex;
-  align-items:center;
+  flex-direction:column;
   justify-content:center;
-  background: url("bg-mauslot2.jpg") center/cover no-repeat;
+  align-items:center;
   font-family:'Orbitron', sans-serif;
+  background-image: url("bg-mauslot2.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
   overflow-x:hidden;
 }
 
-/* ===== MENU CARD ===== */
-.menu{
+/* MENU CONTAINER */
+.menu {
   background: rgba(12,35,74,0.55);
   backdrop-filter: blur(25px);
-  padding: 40px 30px;
   border-radius: 24px;
-  text-align: center;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.45);
-  max-width: 400px;
-  width: 95%;
+  padding: 40px;
+  text-align:center;
+  box-shadow: 0 20px 40px rgba(0,0,0,.45);
+  animation: fadeIn 1s ease;
 }
 
-/* LOGO */
-.menu img{
-  width: 260px;
-  max-width:80%;
+.menu img {
+  width:260px;
   margin-bottom:20px;
 }
 
-/* JUDUL */
-.menu h1{
+.menu h1 {
   color:#60a5fa;
-  text-shadow: 0 0 6px #60a5fa, 0 0 12px #1e90ff;
+  text-shadow:0 0 10px #60a5fa, 0 0 20px #1e90ff;
   margin-bottom:30px;
-  font-size: 22px;
-  line-height:1.3;
+  animation: neonFlicker 3s infinite;
 }
 
-/* TOMBOL */
-.menu button{
-  width: 100%;
-  max-width: 260px;
-  padding:12px;
+.menu button {
+  width:260px;
+  padding:14px;
   margin:10px 0;
   border:none;
   border-radius:14px;
-  font-size:15px;
+  font-size:16px;
   font-weight:600;
   cursor:pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.menu button:hover{
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-}
-
-/* Tombol utama */
-.btn-main{
-  background: linear-gradient(135deg,#60a5fa,#93c5fd);
-  color:#fff;
-}
-
-/* Tombol bonus */
-.btn-play{
-  background: linear-gradient(135deg,#facc15,#fde047);
+  transition: 0.3s;
   color:#061021;
 }
 
-/* ===== BOLA ANIMASI ===== */
-#ball{
+.btn-main {
+  background: linear-gradient(135deg,#60a5fa,#1e90ff);
+}
+
+.btn-main:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px #60a5fa;
+}
+
+.btn-play {
+  background: linear-gradient(135deg,#facc15,#fde047);
+}
+
+.btn-play:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px #fde047;
+}
+
+/* BOLA ANIMASI */
+#ball {
   position: fixed;
   bottom: 90px;
   left: 50%;
@@ -92,45 +91,71 @@ body{
   z-index: 9999;
 }
 
-#ball.kick{
+#ball.kick {
   animation: kickBall 0.8s ease-out forwards;
 }
 
-@keyframes kickBall{
-  0%{
-    transform: translateX(-50%) translateY(0) scale(1);
-    opacity:1;
-  }
-  60%{
-    transform: translateX(200px) translateY(-140px) scale(1.1);
-    opacity:1;
-  }
-  100%{
-    transform: translateX(420px) translateY(-260px) scale(0.6);
-    opacity:0;
-  }
+@keyframes kickBall {
+  0% { transform: translateX(-50%) translateY(0) scale(1); opacity:1; }
+  60% { transform: translateX(200px) translateY(-140px) scale(1.1); opacity:1; }
+  100% { transform: translateX(420px) translateY(-260px) scale(0.6); opacity:0; }
 }
 
-/* ===== RESPONSIVE ===== */
-@media (max-width:500px){
-  .menu{
-    padding: 30px 20px;
-  }
-  .menu img{
-    width: 180px;
-  }
-  .menu h1{
-    font-size:18px;
-  }
-  .menu button{
-    max-width: 200px;
-    font-size:14px;
-    padding:10px;
-  }
+/* ANIMASI NEON */
+@keyframes neonFlicker {
+  0%,18%,22%,25%,53%,57%,100%{opacity:1;}
+  20%,24%,55%{opacity:0.4;}
 }
+
+@keyframes fadeIn {
+  0% {opacity:0; transform: translateY(20px);}
+  100% {opacity:1; transform: translateY(0);}
+}
+
+/* RESPONSIVE MOBILE */
+@media(max-width:600px){
+  .menu { padding: 25px; width: 90%; }
+  .menu img { width: 200px; }
+  .menu button { width: 90%; }
+}
+
 </style>
 </head>
-
 <body>
 
-<div class="
+<div class="menu">
+  <img src="logo-mauslot.gif" alt="MAUSLOT Logo">
+  <h1>Selamat Datang di MAUSLOT</h1>
+  
+  <button class="btn-main" onclick="kickToCalc()">⚽ Masuk Kalkulator Parlay</button>
+  <button class="btn-play">🎁 Special Bonus MAUSLOT</button>
+</div>
+
+<div id="ball"></div>
+<audio id="kickSound" preload="auto">
+  <source src="kick.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+function kickToCalc(){
+  const ball = document.getElementById("ball");
+  const sound = document.getElementById("kickSound");
+
+  // animasi bola
+  ball.classList.remove("kick");
+  void ball.offsetWidth;
+  ball.classList.add("kick");
+
+  // mainkan suara
+  sound.currentTime = 0;
+  sound.play();
+
+  // pindah halaman kalkulator
+  setTimeout(()=>{
+    window.location.href = "kalkulator.html";
+  }, 800);
+}
+</script>
+
+</body>
+</html>
