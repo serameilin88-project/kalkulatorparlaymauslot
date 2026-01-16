@@ -7,18 +7,19 @@
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&display=swap" rel="stylesheet">
 
 <style>
-/* RESET & BODY */
+/* RESET */
 * { box-sizing: border-box; margin:0; padding:0; }
+
+/* BODY & BACKGROUND */
 body {
   min-height:100vh;
   display:flex;
-  flex-direction:column;
   justify-content:center;
   align-items:center;
   font-family:'Orbitron', sans-serif;
   background-image: url("bg-mauslot2.jpg");
-  background-position: center;
   background-size: cover;
+  background-position: center;
   background-repeat: no-repeat;
   overflow-x:hidden;
 }
@@ -59,25 +60,36 @@ body {
   color:#061021;
 }
 
+/* TOMBOL MASUK KALKULATOR */
 .btn-main {
   background: linear-gradient(135deg,#60a5fa,#1e90ff);
 }
-
 .btn-main:hover {
   transform: scale(1.05);
   box-shadow: 0 0 20px #60a5fa;
 }
 
+/* TOMBOL BONUS */
 .btn-play {
   background: linear-gradient(135deg,#facc15,#fde047);
 }
-
 .btn-play:hover {
   transform: scale(1.05);
   box-shadow: 0 0 20px #fde047;
 }
 
-/* BOLA ANIMASI */
+/* ANIMASI NEON & FADE */
+@keyframes neonFlicker {
+  0%,18%,22%,25%,53%,57%,100%{opacity:1;}
+  20%,24%,55%{opacity:0.4;}
+}
+
+@keyframes fadeIn {
+  0% {opacity:0; transform: translateY(20px);}
+  100% {opacity:1; transform: translateY(0);}
+}
+
+/* ANIMASI BOLA ⚽ */
 #ball {
   position: fixed;
   bottom: 90px;
@@ -101,37 +113,34 @@ body {
   100% { transform: translateX(420px) translateY(-260px) scale(0.6); opacity:0; }
 }
 
-/* ANIMASI NEON */
-@keyframes neonFlicker {
-  0%,18%,22%,25%,53%,57%,100%{opacity:1;}
-  20%,24%,55%{opacity:0.4;}
-}
-
-@keyframes fadeIn {
-  0% {opacity:0; transform: translateY(20px);}
-  100% {opacity:1; transform: translateY(0);}
-}
-
 /* RESPONSIVE MOBILE */
 @media(max-width:600px){
   .menu { padding: 25px; width: 90%; }
   .menu img { width: 200px; }
   .menu button { width: 90%; }
 }
-
 </style>
 </head>
 <body>
 
 <div class="menu">
+  <!-- LOGO -->
   <img src="logo-mauslot.gif" alt="MAUSLOT Logo">
+
+  <!-- JUDUL -->
   <h1>Selamat Datang di MAUSLOT</h1>
-  
+
+  <!-- TOMBOL MASUK KALKULATOR -->
   <button class="btn-main" onclick="kickToCalc()">⚽ Masuk Kalkulator Parlay</button>
+
+  <!-- TOMBOL BONUS -->
   <button class="btn-play">🎁 Special Bonus MAUSLOT</button>
 </div>
 
+<!-- BOLA ANIMASI -->
 <div id="ball"></div>
+
+<!-- AUDIO -->
 <audio id="kickSound" preload="auto">
   <source src="kick.mp3" type="audio/mpeg">
 </audio>
@@ -141,7 +150,7 @@ function kickToCalc(){
   const ball = document.getElementById("ball");
   const sound = document.getElementById("kickSound");
 
-  // animasi bola
+  // reset animasi bola
   ball.classList.remove("kick");
   void ball.offsetWidth;
   ball.classList.add("kick");
