@@ -3,15 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Menu Bonus Mobile</title>
+<title>Menu Bonus Mobile Premium</title>
 <style>
-  /* Basic reset */
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-
+  * { box-sizing: border-box; margin:0; padding:0; }
   body {
     font-family: Arial, sans-serif;
     background: #06162f;
@@ -20,7 +14,6 @@
     justify-content: center;
     padding: 20px 0;
   }
-
   .bonus-menu {
     background: #0c234a;
     border-radius: 15px;
@@ -30,13 +23,11 @@
     text-align: center;
     box-shadow: 0 0 20px rgba(0,0,0,0.7);
   }
-
   .bonus-menu h1 {
     color: #ffcc00;
     margin-bottom: 20px;
     font-size: 22px;
   }
-
   .bonus-item {
     background: #0c234a;
     margin: 15px 0;
@@ -44,20 +35,17 @@
     padding: 15px;
     box-shadow: 0 0 10px rgba(0,0,0,0.3);
   }
-
   .bonus-item h2 {
     color: #ffcc00;
     margin-bottom: 12px;
     font-size: 18px;
   }
-
   .bonus-buttons {
     display: flex;
     justify-content: space-between;
     gap: 10px;
     flex-wrap: wrap;
   }
-
   .bonus-button {
     flex: 1 1 45%;
     background: #ff9900;
@@ -70,7 +58,6 @@
     transition: all 0.2s;
     min-width: 100px;
   }
-
   .bonus-button:hover {
     background: #ffcc00;
     transform: scale(1.05);
@@ -89,7 +76,6 @@
     background-color: rgba(0,0,0,0.6);
     animation: fadeIn 0.3s;
   }
-
   .modal-content {
     background-color: #0c234a;
     margin: auto;
@@ -104,7 +90,6 @@
     position: relative;
     animation: slideUp 0.3s;
   }
-
   .close-modal {
     position: absolute;
     top: 10px;
@@ -114,18 +99,10 @@
     font-weight: bold;
     cursor: pointer;
   }
+  @keyframes fadeIn { from {opacity: 0;} to {opacity:1;} }
+  @keyframes slideUp { from {transform: translateY(100px); opacity:0;} to {transform: translateY(0); opacity:1;} }
 
-  @keyframes fadeIn {
-    from {opacity: 0;}
-    to {opacity: 1;}
-  }
-
-  @keyframes slideUp {
-    from {transform: translateY(100px); opacity:0;}
-    to {transform: translateY(0); opacity:1;}
-  }
-
-  /* Confetti effect for claim */
+  /* Confetti effect */
   .confetti {
     position: fixed;
     pointer-events: none;
@@ -135,7 +112,6 @@
     animation: fall 1s linear forwards;
     z-index: 2000;
   }
-
   @keyframes fall {
     0% {transform: translateY(0) rotate(0deg);}
     100% {transform: translateY(500px) rotate(720deg); opacity:0;}
@@ -152,7 +128,7 @@
   <div class="bonus-item">
     <h2>FREECHIP 5.000</h2>
     <div class="bonus-buttons">
-      <button class="bonus-button" onclick="toggleModal('🎁 FREECHIP 5.000 MENUNGGU!\nDownload aplikasi sekarang & chip langsung masuk! 🚀')">Detail</button>
+      <button class="bonus-button" onclick="toggleModal('🎁 FREECHIP 5.000 MENUNGGU!\nDownload aplikasi sekarang & chip langsung masuk! 🚀\n\n📌 Syarat & Ketentuan:\n1. Berlaku 1x per akun.\n2. Minimal deposit 10K.\n3. Chip masuk otomatis setelah klaim.\n4. Berlaku hingga 23.59 WIB hari ini.')">Detail</button>
       <button class="bonus-button" onclick="claimBonus('FREECHIP 5.000')">Claim</button>
     </div>
   </div>
@@ -161,7 +137,7 @@
   <div class="bonus-item">
     <h2>Bonus Jumat Berkah 30%</h2>
     <div class="bonus-buttons">
-      <button class="bonus-button" onclick="toggleModal('🌙✨ Bonus Jumat Berkah 30% ✨🌙\nDari Pkl 00.00 - 23.59 💰\nDepo min: 30K\n🎁 Bonus: 30% (max 300K)')">Detail</button>
+      <button class="bonus-button" onclick="toggleModal('🌙✨ Bonus Jumat Berkah 30% ✨🌙\nDari Pkl 00.00 - 23.59 WIB 💰\nDepo min: 30K\n🎁 Bonus: 30% (max 300K)\n\n📌 Syarat & Ketentuan:\n1. Hanya berlaku untuk deposit hari Jumat.\n2. Maksimal bonus 300K per akun.\n3. Wajib klaim sebelum pukul 23.59 WIB.')">Detail</button>
       <button class="bonus-button" onclick="claimBonus('Bonus Jumat Berkah 30%')">Claim</button>
     </div>
   </div>
@@ -170,7 +146,7 @@
   <div class="bonus-item">
     <h2>WEEKEND SLOT - NO DROP!</h2>
     <div class="bonus-buttons">
-      <button class="bonus-button" onclick="toggleModal('💥 Paket SLOT Nonstop suntik BONUS • Main Malam • Hadiah Gila! 💥\n\n⏰ OPEN KHUSUS MALAM\n🗓️ Sabtu & Minggu\n🕛 00.00 – 04.00 WIB (Subuh)')">Detail</button>
+      <button class="bonus-button" onclick="toggleModal('💥 Paket SLOT Nonstop suntik BONUS • Main Malam • Hadiah Gila! 💥\n⏰ Open Khusus Malam\n🗓️ Sabtu & Minggu\n🕛 00.00 – 04.00 WIB (Subuh)\n\n📌 Syarat & Ketentuan:\n1. Berlaku Sabtu & Minggu malam.\n2. Minimal deposit 50K.\n3. Maksimal payout sesuai ketentuan permainan.')">Detail</button>
       <button class="bonus-button" onclick="claimBonus('WEEKEND SLOT - NO DROP!')">Claim</button>
     </div>
   </div>
@@ -179,7 +155,7 @@
   <div class="bonus-item">
     <h2>PROMO GAGAL TIDUR</h2>
     <div class="bonus-buttons">
-      <button class="bonus-button" onclick="toggleModal('🥱 PROMO GAGAL TIDUR 🥱\nMAIN SLOT\nBERHUJUNG MAXWIN! 💥')">Detail</button>
+      <button class="bonus-button" onclick="toggleModal('🥱 PROMO GAGAL TIDUR 🥱\nMAIN SLOT BERHUJUNG MAXWIN! 💥\n\n📌 Syarat & Ketentuan:\n1. Berlaku untuk permainan slot malam hari.\n2. Minimal deposit 20K.\n3. Hanya 1x klaim per akun.')">Detail</button>
       <button class="bonus-button" onclick="claimBonus('PROMO GAGAL TIDUR')">Claim</button>
     </div>
   </div>
@@ -189,4 +165,41 @@
 <!-- Modal -->
 <div id="bonusModal" class="modal">
   <div class="modal-content">
-    <span class="close-modal"
+    <span class="close-modal" onclick="toggleModal()">×</span>
+    <div id="modalText"></div>
+  </div>
+</div>
+
+<script>
+  let modal = document.getElementById('bonusModal');
+  let modalText = document.getElementById('modalText');
+
+  function toggleModal(message = null) {
+    if(modal.style.display === "block") {
+      modal.style.display = "none";
+    } else {
+      modalText.textContent = message;
+      modal.style.display = "block";
+    }
+  }
+
+  window.onclick = function(event) {
+    if(event.target == modal) toggleModal();
+  }
+
+  function claimBonus(bonusName) {
+    alert(`🎉 Anda berhasil claim ${bonusName}! 🎉`);
+    // Confetti effect
+    for(let i=0; i<30; i++){
+      let confetti = document.createElement('div');
+      confetti.classList.add('confetti');
+      confetti.style.left = Math.random()*window.innerWidth + 'px';
+      confetti.style.background = `hsl(${Math.random()*360}, 100%, 50%)`;
+      document.body.appendChild(confetti);
+      setTimeout(()=> confetti.remove(), 1000);
+    }
+  }
+</script>
+
+</body>
+</html>
