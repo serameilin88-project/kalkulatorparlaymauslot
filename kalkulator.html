@@ -37,7 +37,7 @@ body{
 .container{
   display:flex;
   gap:20px;
-  flex-wrap:wrap;
+  flex-wrap: wrap;
 }
 
 /* CARD FORM */
@@ -207,21 +207,27 @@ tr.total-row td{
   animation: neonFlickerTotal 2s infinite;
 }
 
-/* Neon flicker effect untuk total */
 @keyframes neonFlickerTotal{
-  0%, 18%, 22%, 25%, 53%, 57%, 100%{opacity:1;}
-  20%, 24%, 55%{opacity:0.35;}
+  0%,18%,22%,25%,53%,57%,100%{opacity:1;}
+  20%,24%,55%{opacity:0.35;}
 }
 
 /* Responsive mobile */
 @media (max-width:900px){
   .container{
-    flex-direction:column;
-    align-items:center;
+    flex-direction: column;
+    align-items: center;
   }
-  .table-container, .card{
+  .card, .table-container{
     width:100%;
     max-width:400px;
+  }
+  .table-container{
+    order:2;   /* tabel selalu di bawah */
+    margin-top:20px;
+  }
+  .card{
+    order:1;    /* form selalu di atas */
   }
 }
 </style>
@@ -297,9 +303,9 @@ tr.total-row td{
 function goHome(){ window.location.href="index.html"; }
 
 function addOdds(){
-  const row = document.createElement("div");
-  row.className = "odds-row";
-  row.innerHTML = `
+  const row=document.createElement("div");
+  row.className="odds-row";
+  row.innerHTML=`
     <input type="number" step="0.01" placeholder="Odds">
     <select class="result-type">
       <option value="win">Menang</option>
@@ -314,52 +320,51 @@ function addOdds(){
 }
 
 function removeOdds(btn){
-  const rows = document.querySelectorAll(".odds-row");
-  if(rows.length <= 1){ alert("Minimal 1 odds untuk parlay"); return; }
+  const rows=document.querySelectorAll(".odds-row");
+  if(rows.length<=1){ alert("Minimal 1 odds untuk parlay"); return; }
   btn.parentElement.remove();
 }
 
 function calculate(){
-  const stake = parseFloat(document.getElementById("stake").value);
-  if(!stake || stake<=0){ alert("Masukkan stake yang benar"); return; }
+  const stake=parseFloat(document.getElementById("stake").value);
+  if(!stake||stake<=0){ alert("Masukkan stake yang benar"); return; }
 
-  const rows = document.querySelectorAll(".odds-row");
-  let validOdds = 0, tableCumulative = 1;
+  const rows=document.querySelectorAll(".odds-row");
+  let validOdds=0, cumulative=1;
 
-  const tableBody = document.getElementById("tableBody");
-  tableBody.innerHTML = "";
+  const tableBody=document.getElementById("tableBody");
+  tableBody.innerHTML="";
 
   rows.forEach((row,index)=>{
     const odd=parseFloat(row.querySelector("input").value);
     const result=row.querySelector(".result-type").value;
-    if(!odd || odd<=1) return;
+    if(!odd||odd<=1) return;
     validOdds++;
 
-    let appliedOdd=1;
-    if(result==="win") appliedOdd=odd;
-    else if(result==="half-win") appliedOdd=(odd+1)/2;
-    else if(result==="draw") appliedOdd=1;
-    else if(result==="half-lose") appliedOdd=0.5;
-    else if(result==="lose"){ tableCumulative=0; appliedOdd=0; }
+    let applied=1;
+    if(result==="win") applied=odd;
+    else if(result==="half-win") applied=(odd+1)/2;
+    else if(result==="draw") applied=1;
+    else if(result==="half-lose") applied=0.5;
+    else if(result==="lose"){ cumulative=0; applied=0; }
 
-    tableCumulative *= appliedOdd;
-
-    const payout = stake*tableCumulative;
+    cumulative*=applied;
+    const payout=stake*cumulative;
 
     const tr=document.createElement("tr");
     tr.innerHTML=`
       <td>${index+1}</td>
       <td>${odd.toFixed(2)}</td>
       <td>${result.replace("-", " ").toUpperCase()}</td>
-      <td class="value">${tableCumulative.toFixed(2)}</td>
+      <td class="value">${cumulative.toFixed(2)}</td>
       <td class="value">Rp ${payout.toLocaleString("id-ID")}</td>
     `;
     tableBody.appendChild(tr);
   });
 
-  // Update total dengan neon effect biru
-  document.getElementById("totalOdds").textContent = tableCumulative.toFixed(2);
-  document.getElementById("totalPayout").textContent = `Rp ${ (stake*tableCumulative).toLocaleString("id-ID") }`;
+  // update total
+  document.getElementById("totalOdds").textContent=cumulative.toFixed(2);
+  document.getElementById("totalPayout").textContent=`Rp ${(stake*cumulative).toLocaleString("id-ID")}`;
 
   if(validOdds<1) alert("Masukkan minimal 1 odds untuk parlay");
 }
