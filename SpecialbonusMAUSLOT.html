@@ -5,7 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Menu Bonus Mobile Premium</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif;}
+
 /* Background halaman */
 body{
   background: url('bg-mauslot.jpg') no-repeat center center fixed;
@@ -22,7 +23,7 @@ body{
 
 /* Kartu bonus transparan */
 .card{
-  background: rgba(12,35,74,0.8); /* transparan */
+  background: rgba(12,35,74,0.8);
   border-radius:15px;
   padding:15px;
   margin-bottom:15px;
@@ -67,7 +68,7 @@ body{
   animation:fadeIn 0.3s;
 }
 .modal-box{
-  background: rgba(12,35,74,0.9); /* transparan */
+  background: rgba(12,35,74,0.9);
   border-radius:15px 15px 0 0;
   padding:20px;
   position:absolute;
@@ -88,44 +89,45 @@ body{
 </head>
 <body>
 
+<!-- Tombol kembali ke index.html -->
 <a href="index.html" class="back-main">🏠 Kembali ke Menu Utama</a>
 
 <div class="wrapper">
 
 <!-- Bonus Cards -->
-<div class="card" onclick="openModal(freechip)">
+<div class="card">
 <h2>🎁 FREECHIP 5.000</h2>
 <img src="freechip.jpg" class="banner" alt="Freechip">
 <div class="btns">
-<button class="btn detail" onclick="event.stopPropagation(); openModal(freechip)">Detail</button>
-<button class="btn claim" onclick="event.stopPropagation(); claimBonus('FREECHIP 5.000','https://urlmsshorten.com/telegram-official')">Claim</button>
+<button class="btn detail" onclick="openModal(freechip)">Detail</button>
+<button class="btn claim" onclick="claimBonus('FREECHIP 5.000','https://urlmsshorten.com/telegram-official')">Claim</button>
 </div>
 </div>
 
-<div class="card" onclick="openModal(jumat)">
+<div class="card">
 <h2>🌙 Bonus Jumat Berkah 30%</h2>
 <img src="jumat.jpg" class="banner" alt="Jumat Berkah">
 <div class="btns">
-<button class="btn detail" onclick="event.stopPropagation(); openModal(jumat)">Detail</button>
-<button class="btn claim" onclick="event.stopPropagation(); claimBonus('Bonus Jumat Berkah 30%','https://urlmsshorten.com/telegram-official')">Claim</button>
+<button class="btn detail" onclick="openModal(jumat)">Detail</button>
+<button class="btn claim" onclick="claimBonus('Bonus Jumat Berkah 30%','https://urlmsshorten.com/telegram-official')">Claim</button>
 </div>
 </div>
 
-<div class="card" onclick="openModal(weekend)">
+<div class="card">
 <h2>🔥 Weekend Slot No Drop</h2>
 <img src="weekendslot.jpg" class="banner" alt="Weekend Slot">
 <div class="btns">
-<button class="btn detail" onclick="event.stopPropagation(); openModal(weekend)">Detail</button>
-<button class="btn claim" onclick="event.stopPropagation(); claimBonus('Weekend Slot','https://urlmsshorten.com/telegram-official')">Claim</button>
+<button class="btn detail" onclick="openModal(weekend)">Detail</button>
+<button class="btn claim" onclick="claimBonus('Weekend Slot','https://urlmsshorten.com/telegram-official')">Claim</button>
 </div>
 </div>
 
-<div class="card" onclick="openModal(gagal)">
+<div class="card">
 <h2>🥱 Promo Gagal Tidur</h2>
 <img src="gagaltidur.jpg" class="banner" alt="Gagal Tidur">
 <div class="btns">
-<button class="btn detail" onclick="event.stopPropagation(); openModal(gagal)">Detail</button>
-<button class="btn claim" onclick="event.stopPropagation(); claimBonus('Promo Gagal Tidur','https://urlmsshorten.com/telegram-official')">Claim</button>
+<button class="btn detail" onclick="openModal(gagal)">Detail</button>
+<button class="btn claim" onclick="claimBonus('Promo Gagal Tidur','https://urlmsshorten.com/telegram-official')">Claim</button>
 </div>
 </div>
 
@@ -141,4 +143,35 @@ body{
 </div>
 
 <script>
-const freechip = `🎁 FREECHIP 5.000\
+// Teks detail bonus
+const freechip = `🎁 FREECHIP 5.000\n\n✔ Member baru\n✔ Minimal deposit 10K\n✔ 1x per akun & IP\n✔ Tidak bisa digabung promo lain\n✔ Wajib habiskan chip`;
+const jumat = `🌙 BONUS JUMAT BERKAH 30%\n\n⏰ Jumat 00.00 – 23.59 WIB\n💰 Min depo 30K\n🎁 Max bonus 300K\n✔ Klaim sebelum deposit`;
+const weekend = `🔥 WEEKEND SLOT NO DROP\n\n🗓 Sabtu & Minggu\n⏰ 00.00 – 04.00 WIB\n💰 Min depo 50K\n🎰 Slot only`;
+const gagal = `🥱 PROMO GAGAL TIDUR\n\n⏰ 22.00 – 05.00 WIB\n💰 Min depo 20K\n🎰 Slot only`;
+
+// Modal open/close
+function openModal(t){
+  document.getElementById('text').innerText=t;
+  document.getElementById('modal').style.display='block';
+}
+function closeModal(){
+  document.getElementById('modal').style.display='none';
+}
+
+// Claim bonus dengan confetti dan redirect
+function claimBonus(name,url){
+  alert(`🎉 Anda berhasil claim ${name}! 🎉`);
+  for(let i=0;i<30;i++){
+    let c = document.createElement('div');
+    c.classList.add('confetti');
+    c.style.left = Math.random() * window.innerWidth + 'px';
+    c.style.background = `hsl(${Math.random()*360},100%,50%)`;
+    document.body.appendChild(c);
+    setTimeout(()=>c.remove(),1000);
+  }
+  setTimeout(()=>{window.location.href=url},500);
+}
+</script>
+
+</body>
+</html>
