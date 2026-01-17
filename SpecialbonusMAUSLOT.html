@@ -62,8 +62,6 @@
     background: #ffcc00;
     transform: scale(1.05);
   }
-
-  /* Banner Premium 360x180 */
   .banner-container {
     position: relative;
     cursor: pointer;
@@ -79,9 +77,7 @@
     display: block;
     transition: transform 0.3s;
   }
-  .banner-container:hover .bonus-banner {
-    transform: scale(1.05);
-  }
+  .banner-container:hover .bonus-banner { transform: scale(1.05); }
   .banner-overlay {
     position: absolute;
     bottom: 0;
@@ -95,8 +91,6 @@
     font-weight: bold;
     font-size: 16px;
   }
-
-  /* Modal style */
   .modal {
     display: none;
     position: fixed;
@@ -132,15 +126,12 @@
     font-weight: bold;
     cursor: pointer;
   }
-  @keyframes fadeIn { from {opacity: 0;} to {opacity:1;} }
-  @keyframes slideUp { from {transform: translateY(100px); opacity:0;} to {transform: translateY(0); opacity:1;} }
-
-  /* Confetti effect */
+  @keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
+  @keyframes slideUp { from {transform:translateY(100px); opacity:0;} to {transform:translateY(0); opacity:1;} }
   .confetti {
     position: fixed;
     pointer-events: none;
-    width: 10px;
-    height: 10px;
+    width: 10px; height: 10px;
     background: #ffcc00;
     animation: fall 1s linear forwards;
     z-index: 2000;
@@ -156,11 +147,11 @@
 <div class="bonus-menu">
   <h1>🎁 Menu Bonus Mobile 🎁</h1>
 
-  <!-- Bonus 1: Freechip -->
+  <!-- Bonus 1 -->
   <div class="bonus-item">
     <h2>FREECHIP 5.000</h2>
     <div class="banner-container" onclick="toggleModal(freechipText)">
-      <img src="images/freechip.jpg" alt="FREECHIP 5000" class="bonus-banner">
+      <img src="/images/freechip.jpg" alt="FREECHIP 5.000" class="bonus-banner">
       <div class="banner-overlay"><span>🎁 FREECHIP 5.000</span></div>
     </div>
     <div class="bonus-buttons">
@@ -169,11 +160,11 @@
     </div>
   </div>
 
-  <!-- Bonus 2: Bonus Jumat Berkah -->
+  <!-- Bonus 2 -->
   <div class="bonus-item">
     <h2>Bonus Jumat Berkah 30%</h2>
     <div class="banner-container" onclick="toggleModal(jumatBerkahText)">
-      <img src="images/jumat-berkah.jpg" alt="Bonus Jumat Berkah" class="bonus-banner">
+      <img src="/images/jumat-berkah.jpg" alt="Bonus Jumat Berkah" class="bonus-banner">
       <div class="banner-overlay"><span>🌙 Bonus Jumat Berkah 30%</span></div>
     </div>
     <div class="bonus-buttons">
@@ -182,11 +173,11 @@
     </div>
   </div>
 
-  <!-- Bonus 3: Weekend Slot -->
+  <!-- Bonus 3 -->
   <div class="bonus-item">
     <h2>WEEKEND SLOT - NO DROP!</h2>
     <div class="banner-container" onclick="toggleModal(weekendSlotText)">
-      <img src="images/weekendslotnodrop.jpg" alt="Weekend Slot" class="bonus-banner">
+      <img src="/images/weekendslotnodrop.jpg" alt="Weekend Slot" class="bonus-banner">
       <div class="banner-overlay"><span>💥 WEEKEND SLOT - NO DROP!</span></div>
     </div>
     <div class="bonus-buttons">
@@ -195,11 +186,11 @@
     </div>
   </div>
 
-  <!-- Bonus 4: Promo Gagal Tidur -->
+  <!-- Bonus 4 -->
   <div class="bonus-item">
     <h2>PROMO GAGAL TIDUR</h2>
     <div class="banner-container" onclick="toggleModal(gagalTidurText)">
-      <img src="images/gagal-tidur.jpg" alt="Promo Gagal Tidur" class="bonus-banner">
+      <img src="/images/gagal-tidur.jpg" alt="Promo Gagal Tidur" class="bonus-banner">
       <div class="banner-overlay"><span>🥱 PROMO GAGAL TIDUR</span></div>
     </div>
     <div class="bonus-buttons">
@@ -277,7 +268,7 @@ MAIN SLOT BERHUJUNG MAXWIN! 💥
   // Claim bonus
   function claimBonus(bonusName) {
     alert(`🎉 Anda berhasil claim ${bonusName}! 🎉`);
-    for(let i=0; i<30; i++){
+    for(let i=0;i<30;i++){
       let confetti = document.createElement('div');
       confetti.classList.add('confetti');
       confetti.style.left = Math.random()*window.innerWidth + 'px';
