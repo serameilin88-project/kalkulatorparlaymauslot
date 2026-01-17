@@ -7,8 +7,8 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif;}
 body{
-  background: url('bg-mauslot.jpg') no-repeat center center fixed;
-  background-size: cover;
+  background:url('bg-mauslot.jpg') no-repeat center center fixed;
+  background-size:cover;
   color:#fff;
   display:flex;
   flex-direction:column;
@@ -23,6 +23,7 @@ body{
   margin-bottom:15px;
   box-shadow:0 5px 15px rgba(0,0,0,.6);
   transition:0.3s;
+  cursor:pointer;
 }
 .card:hover{transform:scale(1.02);}
 .card h2{color:#ffcc00;font-size:18px;margin-bottom:10px;text-align:center;}
@@ -35,10 +36,16 @@ body{
 .claim{background:#ffcc00;color:#06162f;}
 .claim:hover{background:#ff9900;}
 .back-main{
-  background:#ff3300;color:#fff;width:100%;padding:12px;margin-bottom:15px;border-radius:10px;font-weight:bold;text-align:center;text-decoration:none;display:block;text-shadow:1px 1px 2px rgba(0,0,0,0.5);
+  background:#ff3300;color:#fff;width:100%;padding:12px;margin-bottom:15px;border-radius:10px;
+  font-weight:bold;text-align:center;text-decoration:none;display:block;text-shadow:1px 1px 2px rgba(0,0,0,0.5);
 }
 .modal{
-  display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:999;animation:fadeIn 0.3s;
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.7);
+  z-index:999;
+  animation:fadeIn 0.3s;
 }
 .modal-box{
   background: rgba(12,35,74,0.9);
@@ -64,52 +71,55 @@ body{
 
 <div class="wrapper">
 
-<!-- Bonus Cards -->
+<!-- Freechip -->
 <div class="card">
-<h2>🎁 FREECHIP 5.000</h2>
-<img src="freechip.jpg" class="banner" alt="Freechip">
-<div class="btns">
-<button class="btn detail" onclick="openModal(bonusDetails.freechip)">Detail</button>
-<button class="btn claim" onclick="claimBonus('FREECHIP 5.000','https://urlmsshorten.com/telegram-official')">Claim</button>
-</div>
+  <h2>🎁 FREECHIP 5.000</h2>
+  <img src="freechip5000.jpg" class="banner" alt="Freechip">
+  <div class="btns">
+    <button class="btn detail" onclick="openModal('freechip')">Detail</button>
+    <button class="btn claim" onclick="claimBonus('FREECHIP 5.000','https://urlmsshorten.com/telegram-official')">Claim</button>
+  </div>
 </div>
 
+<!-- Bonus Jumat -->
 <div class="card">
-<h2>🌙 Bonus Jumat Berkah 30%</h2>
-<img src="jumat.jpg" class="banner" alt="Jumat Berkah">
-<div class="btns">
-<button class="btn detail" onclick="openModal(bonusDetails.jumat)">Detail</button>
-<button class="btn claim" onclick="claimBonus('Bonus Jumat Berkah 30%','https://urlmsshorten.com/telegram-official')">Claim</button>
-</div>
+  <h2>🌙 Bonus Jumat Berkah 30%</h2>
+  <img src="jumatberkah.jpg" class="banner" alt="Jumat Berkah">
+  <div class="btns">
+    <button class="btn detail" onclick="openModal('jumat')">Detail</button>
+    <button class="btn claim" onclick="claimBonus('Bonus Jumat Berkah 30%','https://urlmsshorten.com/telegram-official')">Claim</button>
+  </div>
 </div>
 
+<!-- Weekend Slot -->
 <div class="card">
-<h2>🔥 Weekend Slot No Drop</h2>
-<img src="weekendslot.jpg" class="banner" alt="Weekend Slot">
-<div class="btns">
-<button class="btn detail" onclick="openModal(bonusDetails.weekend)">Detail</button>
-<button class="btn claim" onclick="claimBonus('Weekend Slot','https://urlmsshorten.com/telegram-official')">Claim</button>
-</div>
+  <h2>🔥 Weekend Slot No Drop</h2>
+  <img src="weekendslotnodrop.jpg" class="banner" alt="Weekend Slot">
+  <div class="btns">
+    <button class="btn detail" onclick="openModal('weekend')">Detail</button>
+    <button class="btn claim" onclick="claimBonus('Weekend Slot','https://urlmsshorten.com/telegram-official')">Claim</button>
+  </div>
 </div>
 
+<!-- Promo Gagal Tidur -->
 <div class="card">
-<h2>🥱🔥 Promo Gagal Tidur 🔥🥱</h2>
-<img src="gagaltidur.jpg" class="banner" alt="Gagal Tidur">
-<div class="btns">
-<button class="btn detail" onclick="openModal(bonusDetails.gagal)">Detail</button>
-<button class="btn claim" onclick="claimBonus('Promo Gagal Tidur','https://urlmsshorten.com/telegram-official')">Claim</button>
-</div>
+  <h2>🥱 Promo Gagal Tidur</h2>
+  <img src="gagaltidur.jpg" class="banner" alt="Gagal Tidur">
+  <div class="btns">
+    <button class="btn detail" onclick="openModal('gagal')">Detail</button>
+    <button class="btn claim" onclick="claimBonus('Promo Gagal Tidur','https://urlmsshorten.com/telegram-official')">Claim</button>
+  </div>
 </div>
 
 </div>
 
 <!-- Modal -->
 <div class="modal" id="modal">
-<div class="modal-box">
-<h3>Detail Bonus</h3>
-<pre id="text" style="white-space:pre-wrap;font-size:14px;"></pre>
-<button class="btn claim" style="width:100%;margin-top:15px;" onclick="closeModal()">Kembali ke Menu Bonus</button>
-</div>
+  <div class="modal-box">
+    <h3>Detail Bonus</h3>
+    <pre id="text" style="white-space:pre-wrap;font-size:14px;"></pre>
+    <button class="btn claim" style="width:100%;margin-top:15px;" onclick="closeModal()">Kembali ke Menu Bonus</button>
+  </div>
 </div>
 
 <script>
@@ -126,12 +136,10 @@ Peluang cuan makin terbuka lebar
 Jangan sampai terlewat!
 Download sekarang & rasakan sensasi mainnya
 MAUSLOT – Download Sekarang, Menang Lebih Cepat!`,
-
   jumat: `🌙✨ Bonus Jumat Berkah 30% ✨🌙
 Dari Pkl 00.00 - 23.59💰 
 Depo min: 30K
 🎁 Bonus: 30% (max 300K)`,
-
   weekend: `🔥✨ WEEKEND SLOT – NO DROP! ✨🔥
 🎯 Paket Slot Nonstop, Bonus Tanpa Henti!
 
@@ -152,9 +160,7 @@ Depo min: 30K
 ⚠️ CATATAN PENTING
 ⏳ Kuota terbatas — promo tutup otomatis jam 04.00 WIB
 🚀 Klaim sekarang sebelum kelewatan!`,
-
   gagal: `🥱🔥 PROMO GAGAL TIDUR 🔥🥱
-
 MAIN SLOT BERUJUNG MAXWIN! 💥💰
 
 🎁 SUSUNAN HADIAH
@@ -175,22 +181,20 @@ MAIN SLOT BERUJUNG MAXWIN! 💥💰
 ⚡️ Hadiah spesial stamina malam`
 };
 
-function openModal(t){
-  document.getElementById('text').innerText = t;
+function openModal(key){
+  document.getElementById('text').innerText = bonusDetails[key];
   document.getElementById('modal').style.display = 'block';
 }
-
 function closeModal(){
   document.getElementById('modal').style.display = 'none';
 }
-
 function claimBonus(name,url){
   alert(`🎉 Anda berhasil claim ${name}! 🎉`);
   for(let i=0;i<30;i++){
-    let c = document.createElement('div');
+    let c=document.createElement('div');
     c.classList.add('confetti');
-    c.style.left = Math.random() * window.innerWidth + 'px';
-    c.style.background = `hsl(${Math.random()*360},100%,50%)`;
+    c.style.left=Math.random()*window.innerWidth+'px';
+    c.style.background=`hsl(${Math.random()*360},100%,50%)`;
     document.body.appendChild(c);
     setTimeout(()=>c.remove(),1000);
   }
