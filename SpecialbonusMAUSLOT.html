@@ -27,23 +27,20 @@ body{
 }
 .card:hover{transform:scale(1.02);}
 .card h2{color:#ffcc00;font-size:18px;margin-bottom:10px;text-align:center;}
-/* Banner images responsive */
+/* Banner images responsive, tidak terpotong */
 .banner{
   width:100%;
-  max-height:200px;
   height:auto;
+  max-height:200px;
   border-radius:12px;
-  object-fit:cover;
+  object-fit:contain;
   margin-bottom:10px;
   transition:0.3s;
 }
 .card:hover .banner{transform:scale(1.05);}
 @media (max-width:400px){
-  .banner{
-    max-height:150px;
-  }
+  .banner{max-height:150px;}
 }
-
 .btns{display:flex;gap:10px;flex-wrap:wrap;}
 .btn{flex:1;padding:12px;border:none;border-radius:10px;font-weight:bold;cursor:pointer;transition:0.2s;}
 .detail{background:#1da1f2;color:#fff;}
@@ -106,7 +103,7 @@ body{
   </div>
 </div>
 
-<!-- Weekend Slot -->
+<!-- Weekend Slot No Drop -->
 <div class="card">
   <h2>🔥 Weekend Slot No Drop</h2>
   <img src="weekendslotnodrop.jpg" class="banner" alt="Weekend Slot">
