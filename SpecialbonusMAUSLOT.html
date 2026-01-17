@@ -6,106 +6,90 @@
 <title>Menu Bonus</title>
 
 <style>
-body{
-  margin:0;
-  background:#06162f;
-  font-family:Arial,sans-serif;
-  color:#fff;
-}
-.container{
-  max-width:400px;
-  margin:auto;
-  padding:15px;
-}
-.title{
-  text-align:center;
-  color:#ffcc00;
-  font-size:20px;
-  margin-bottom:15px;
-}
-.card{
-  background:#0c234a;
-  border-radius:14px;
-  overflow:hidden;
-  margin-bottom:15px;
-  box-shadow:0 6px 20px rgba(0,0,0,.6);
-}
-.card img{
-  width:100%;
-  display:block;
-}
-.card .content{
-  padding:15px;
-}
-.card h2{
-  color:#ffcc00;
-  font-size:17px;
-  margin-bottom:8px;
-}
-.card p{
-  font-size:14px;
-  line-height:1.4;
-}
-.btn{
-  display:block;
-  margin-top:12px;
-  background:#ff9900;
-  color:#06162f;
-  text-align:center;
-  padding:11px;
-  border-radius:10px;
-  text-decoration:none;
-  font-weight:bold;
-}
+body{margin:0;background:#06162f;font-family:Arial;color:#fff}
+.container{max-width:400px;margin:auto;padding:15px}
+.title{text-align:center;color:#ffcc00;font-size:20px;margin-bottom:15px}
+.card{background:#0c234a;border-radius:14px;overflow:hidden;margin-bottom:15px}
+.card img{width:100%;display:block}
+.content{padding:15px}
+h2{color:#ffcc00;font-size:17px;margin-bottom:8px}
+p{font-size:14px;line-height:1.4}
+.btn{display:inline-block;margin-top:10px;padding:10px 14px;background:#ff9900;color:#06162f;border-radius:8px;text-decoration:none;font-weight:bold;font-size:14px}
+.btn.secondary{background:#333;color:#fff;margin-left:6px}
+.modal{display:none;position:fixed;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,.7)}
+.modal-content{background:#0c234a;color:#00ffcc;max-width:400px;margin:auto;margin-top:20%;padding:15px;border-radius:12px}
+.close{float:right;font-size:20px;cursor:pointer;color:#ffcc00}
 </style>
 </head>
 
 <body>
 
 <div class="container">
-  <div class="title">🎁 Menu Bonus 🎁</div>
+<div class="title">🎁 Menu Bonus 🎁</div>
 
-  <!-- FREECHIP -->
-  <div class="card">
-    <img src="./freechip.jpg" alt="Freechip">
-    <div class="content">
-      <h2>FREECHIP 5.000</h2>
-      <p>Bonus chip gratis untuk member baru.</p>
-      <a class="btn" href="https://urlmsshorten.com/telegram-official">CLAIM</a>
-    </div>
-  </div>
+<div class="card">
+<img src="./freechip.jpg">
+<div class="content">
+<h2>FREECHIP 5.000</h2>
+<p>Bonus gratis untuk member baru.</p>
+<a class="btn secondary" onclick="openModal(freechip)">DETAIL</a>
+<a class="btn" href="https://urlmsshorten.com/telegram-official">CLAIM</a>
+</div>
+</div>
 
-  <!-- JUMAT BERKAH -->
-  <div class="card">
-    <img src="./jumat-berkah.jpg" alt="Jumat Berkah">
-    <div class="content">
-      <h2>Bonus Jumat Berkah 30%</h2>
-      <p>Deposit hari Jumat, bonus hingga 300K.</p>
-      <a class="btn" href="https://urlmsshorten.com/telegram-official">CLAIM</a>
-    </div>
-  </div>
+<div class="card">
+<img src="./jumat-berkah.jpg">
+<div class="content">
+<h2>Bonus Jumat Berkah 30%</h2>
+<p>Bonus deposit khusus hari Jumat.</p>
+<a class="btn secondary" onclick="openModal(jumat)">DETAIL</a>
+<a class="btn" href="https://urlmsshorten.com/telegram-official">CLAIM</a>
+</div>
+</div>
 
-  <!-- WEEKEND SLOT -->
-  <div class="card">
-    <img src="./weekend-slot.jpg" alt="Weekend Slot">
-    <div class="content">
-      <h2>Weekend Slot – NO DROP!</h2>
-      <p>Main malam, bonus non stop Sabtu & Minggu.</p>
-      <a class="btn" href="https://urlmsshorten.com/telegram-official">CLAIM</a>
-    </div>
-  </div>
+<div class="card">
+<img src="./weekend-slot.jpg">
+<div class="content">
+<h2>Weekend Slot - NO DROP!</h2>
+<p>Bonus slot malam Sabtu & Minggu.</p>
+<a class="btn secondary" onclick="openModal(weekend)">DETAIL</a>
+<a class="btn" href="https://urlmsshorten.com/telegram-official">CLAIM</a>
+</div>
+</div>
 
-  <!-- GAGAL TIDUR -->
-  <div class="card">
-    <img src="./gagal-tidur.jpg" alt="Gagal Tidur">
-    <div class="content">
-      <h2>Promo Gagal Tidur</h2>
-      <p>Main malam sampai maxwin!</p>
-      <a class="btn" href="https://urlmsshorten.com/telegram-official">CLAIM</a>
-    </div>
-  </div>
+<div class="card">
+<img src="./gagal-tidur.jpg">
+<div class="content">
+<h2>Promo Gagal Tidur</h2>
+<p>Main malam sampai maxwin.</p>
+<a class="btn secondary" onclick="openModal(gagal)">DETAIL</a>
+<a class="btn" href="https://urlmsshorten.com/telegram-official">CLAIM</a>
+</div>
+</div>
 
 </div>
+
+<div id="modal" class="modal" onclick="closeModal()">
+  <div class="modal-content" onclick="event.stopPropagation()">
+    <span class="close" onclick="closeModal()">×</span>
+    <div id="modalText"></div>
+  </div>
+</div>
+
+<script>
+const freechip = `FREECHIP 5.000\nMinimal depo 10K\n1x per akun`;
+const jumat = `Bonus Jumat Berkah 30%\nDepo min 30K\nMax 300K`;
+const weekend = `Weekend Slot\nSabtu & Minggu\n00.00 - 04.00 WIB`;
+const gagal = `Promo Gagal Tidur\nMain malam\nMaxwin`;
+
+function openModal(text){
+  document.getElementById('modalText').innerText = text;
+  document.getElementById('modal').style.display = 'block';
+}
+function closeModal(){
+  document.getElementById('modal').style.display = 'none';
+}
+</script>
 
 </body>
 </html>
