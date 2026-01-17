@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Weekend Slot Bonus - Mobile Premium</title>
+<title>Menu Bonus Mobile Premium</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif}
-body{background:#06162f;color:#fff;display:flex;justify-content:center;padding:15px;}
+body{background:#06162f;color:#fff;display:flex;flex-direction:column;align-items:center;padding:15px;}
 .wrapper{width:100%;max-width:400px;}
 .card{background:#0c234a;border-radius:15px;padding:15px;margin-bottom:15px;box-shadow:0 5px 15px rgba(0,0,0,.6);transition:0.3s;cursor:pointer;}
 .card:hover{transform:scale(1.02);}
@@ -19,21 +19,24 @@ body{background:#06162f;color:#fff;display:flex;justify-content:center;padding:1
 .detail:hover{background:#0d8de0;}
 .claim{background:#ffcc00;color:#06162f;}
 .claim:hover{background:#ff9900;}
+.back-main{background:#ff3300;color:#fff;width:100%;padding:12px;margin-bottom:15px;border-radius:10px;font-weight:bold;text-align:center;text-decoration:none;display:block;}
 .modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:999;animation:fadeIn 0.3s;}
 .modal-box{background:#0c234a;border-radius:15px 15px 0 0;padding:20px;position:absolute;bottom:0;width:100%;max-height:85vh;overflow-y:auto;animation:slideUp 0.3s;}
 .modal h3{color:#ffcc00;margin-bottom:10px;text-align:center;}
-.close{position:absolute;top:10px;right:15px;font-size:22px;cursor:pointer;color:#ffcc00;}
+.confetti{position:fixed;width:10px;height:10px;background:#ffcc00;pointer-events:none;animation:fall 1s linear forwards;z-index:2000;}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
 @keyframes slideUp{from{transform:translateY(100px);opacity:0}to{transform:translateY(0);opacity:1}}
-.confetti{position:fixed;width:10px;height:10px;background:#ffcc00;pointer-events:none;animation:fall 1s linear forwards;z-index:2000;}
-@keyframes fall{0%{transform:translateY(0) rotate(0deg);}100%{transform:translateY(500px) rotate(720deg);opacity:0;}}
+@keyframes fall{0%{transform:translateY(0) rotate(0deg);}100%{transform:translateY(500px) rotate(720deg);opacity:0}}
 </style>
 </head>
 <body>
 
+<!-- Tombol kembali ke index.html -->
+<a href="index.html" class="back-main">🏠 Kembali ke Menu Utama</a>
+
 <div class="wrapper">
 
-<!-- Bonus Card Example -->
+<!-- Bonus Cards -->
 <div class="card" onclick="openModal(freechip)">
 <h2>🎁 FREECHIP 5.000</h2>
 <img src="freechip.jpg" class="banner" alt="Freechip">
@@ -72,12 +75,13 @@ body{background:#06162f;color:#fff;display:flex;justify-content:center;padding:1
 
 </div>
 
-<!-- MODAL -->
+<!-- Modal tanpa tombol x -->
 <div class="modal" id="modal">
 <div class="modal-box">
-<span class="close" onclick="closeModal()">×</span>
 <h3>Detail Bonus</h3>
 <pre id="text" style="white-space:pre-wrap;font-size:14px;"></pre>
+<!-- Tombol Kembali dari modal ke daftar bonus -->
+<button class="btn claim" style="width:100%;margin-top:15px;" onclick="closeModal()">Kembali ke Menu Bonus</button>
 </div>
 </div>
 
@@ -87,13 +91,20 @@ const jumat = `🌙 BONUS JUMAT BERKAH 30%\n\n⏰ Jumat 00.00 – 23.59 WIB\n�
 const weekend = `🔥 WEEKEND SLOT NO DROP\n\n🗓 Sabtu & Minggu\n⏰ 00.00 – 04.00 WIB\n💰 Min depo 50K\n🎰 Slot only`;
 const gagal = `🥱 PROMO GAGAL TIDUR\n\n⏰ 22.00 – 05.00 WIB\n💰 Min depo 20K\n🎰 Slot only`;
 
-function openModal(t){document.getElementById('text').innerText=t;document.getElementById('modal').style.display='block';}
-function closeModal(){document.getElementById('modal').style.display='none';}
+function openModal(t){
+  document.getElementById('text').innerText=t;
+  document.getElementById('modal').style.display='block';
+}
+
+function closeModal(){
+  document.getElementById('modal').style.display='none';
+}
 
 function claimBonus(name,url){
   alert(`🎉 Anda berhasil claim ${name}! 🎉`);
   for(let i=0;i<30;i++){
-    let c=document.createElement('div');c.classList.add('confetti');
+    let c=document.createElement('div');
+    c.classList.add('confetti');
     c.style.left=Math.random()*window.innerWidth+'px';
     c.style.background=`hsl(${Math.random()*360},100%,50%)`;
     document.body.appendChild(c);
