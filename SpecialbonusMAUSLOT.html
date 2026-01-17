@@ -2,92 +2,97 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Weekend Slot Bonus</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Weekend Slot</title>
+
 <style>
-  * { box-sizing: border-box; margin:0; padding:0; }
-  body { font-family: Arial, sans-serif; background: #06162f; color: #fff; display: flex; justify-content: center; padding: 20px 0; }
-  .bonus-menu { background: #0c234a; border-radius: 15px; width: 90%; max-width: 400px; padding: 20px; text-align: center; box-shadow: 0 0 20px rgba(0,0,0,0.7); }
-  .bonus-menu h1 { color: #ffcc00; margin-bottom: 20px; font-size: 22px; }
-  .bonus-item { background: #0c234a; margin: 15px 0; border-radius: 12px; padding: 15px; box-shadow: 0 0 10px rgba(0,0,0,0.3); }
-  .bonus-item h2 { color: #ffcc00; margin-bottom: 12px; font-size: 18px; }
-  .bonus-buttons { display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
-  .bonus-button { flex: 1 1 45%; background: #ff9900; color: #06162f; border: none; padding: 12px; border-radius: 10px; font-size: 15px; cursor: pointer; transition: all 0.2s; min-width: 100px; }
-  .bonus-button:hover { background: #ffcc00; transform: scale(1.05); }
-  .banner-container { position: relative; cursor: pointer; margin-bottom: 12px; border-radius: 15px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
-  .bonus-banner { width: 100%; height: 180px; object-fit: cover; display: block; transition: transform 0.3s; }
-  .banner-container:hover .bonus-banner { transform: scale(1.05); }
-  .banner-overlay { position: absolute; bottom: 0; width: 100%; padding: 10px 0; background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0)); text-align: center; }
-  .banner-overlay span { color: #ffcc00; font-weight: bold; font-size: 16px; }
-  .modal { display: none; position: fixed; z-index: 1000; left: 0; bottom: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.6); animation: fadeIn 0.3s; }
-  .modal-content { background-color: #0c234a; margin: auto; margin-top: auto; border-radius: 15px 15px 0 0; padding: 20px; width: 95%; max-width: 400px; color: #00ffcc; text-align: left; white-space: pre-line; position: relative; animation: slideUp 0.3s; }
-  .close-modal { position: absolute; top: 10px; right: 15px; color: #ffcc00; font-size: 24px; font-weight: bold; cursor: pointer; }
-  @keyframes fadeIn { from {opacity: 0;} to {opacity:1;} }
-  @keyframes slideUp { from {transform: translateY(100px); opacity:0;} to {transform: translateY(0); opacity:1;} }
-  .confetti { position: fixed; pointer-events: none; width: 10px; height: 10px; background: #ffcc00; animation: fall 1s linear forwards; z-index: 2000; }
-  @keyframes fall { 0% {transform: translateY(0) rotate(0deg);} 100% {transform: translateY(500px) rotate(720deg); opacity:0;} }
+body {
+  margin: 0;
+  background: #06162f;
+  font-family: Arial, sans-serif;
+  color: #fff;
+}
+
+.container {
+  max-width: 400px;
+  margin: auto;
+  padding: 15px;
+}
+
+.title {
+  text-align: center;
+  color: #ffcc00;
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+.card {
+  background: #0c234a;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(0,0,0,.6);
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.content {
+  padding: 15px;
+}
+
+.content h2 {
+  color: #ffcc00;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.content p {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.btn {
+  display: block;
+  margin-top: 15px;
+  text-align: center;
+  background: #ff9900;
+  color: #06162f;
+  text-decoration: none;
+  padding: 12px;
+  border-radius: 10px;
+  font-weight: bold;
+}
 </style>
 </head>
+
 <body>
 
-<div class="bonus-menu">
-  <h1>🎁 Weekend Slot Bonus 🎁</h1>
+<div class="container">
+  <div class="title">🎁 Weekend Slot Bonus 🎁</div>
 
-  <div class="bonus-item">
-    <h2>WEEKEND SLOT - NO DROP!</h2>
-    <div class="banner-container" onclick="toggleModal(weekendSlotText)">
-      <img src="data:image/jpeg;base64,PUT_BASE64_WEEKEND_HERE" alt="Weekend Slot" class="bonus-banner">
-      <div class="banner-overlay"><span>💥 WEEKEND SLOT - NO DROP!</span></div>
-    </div>
-    <div class="bonus-buttons">
-      <button class="bonus-button" onclick="toggleModal(weekendSlotText)">Detail</button>
-      <button class="bonus-button" onclick="claimBonus('WEEKEND SLOT - NO DROP!', 'https://urlmsshorten.com/telegram-official')">Claim</button>
+  <div class="card">
+    <!-- GAMBAR PALING AMAN -->
+    <img src="./weekend-slot.jpg" alt="Weekend Slot">
+
+    <div class="content">
+      <h2>WEEKEND SLOT - NO DROP!</h2>
+
+      <p>
+        💥 Paket SLOT Nonstop Suntik BONUS<br>
+        ⏰ Khusus Malam Hari<br>
+        🗓️ Sabtu & Minggu<br>
+        🕛 00.00 – 04.00 WIB
+      </p>
+
+      <a class="btn" href="https://urlmsshorten.com/telegram-official">
+        CLAIM SEKARANG
+      </a>
     </div>
   </div>
-
 </div>
-
-<div id="bonusModal" class="modal">
-  <div class="modal-content">
-    <span class="close-modal" onclick="toggleModal()">×</span>
-    <div id="modalText"></div>
-  </div>
-</div>
-
-<script>
-  const weekendSlotText = `💥 Paket SLOT Nonstop suntik BONUS • Main Malam • Hadiah Gila! 💥
-⏰ Open Khusus Malam
-🗓️ Sabtu & Minggu
-🕛 00.00 – 04.00 WIB (Subuh)
-
-📌 Syarat & Ketentuan:
-1. Berlaku Sabtu & Minggu malam.
-2. Minimal deposit 50K.
-3. Maksimal payout sesuai ketentuan permainan.`;
-
-  let modal = document.getElementById('bonusModal');
-  let modalText = document.getElementById('modalText');
-
-  function toggleModal(message = null) {
-    if(modal.style.display === "block") { modal.style.display = "none"; }
-    else { modalText.textContent = message; modal.style.display = "block"; }
-  }
-
-  window.onclick = function(event) { if(event.target == modal) toggleModal(); }
-
-  function claimBonus(bonusName, url) {
-    alert(`🎉 Anda berhasil claim ${bonusName}! 🎉`);
-    for(let i=0;i<30;i++){
-      let confetti = document.createElement('div');
-      confetti.classList.add('confetti');
-      confetti.style.left = Math.random()*window.innerWidth + 'px';
-      confetti.style.background = `hsl(${Math.random()*360},100%,50%)`;
-      document.body.appendChild(confetti);
-      setTimeout(()=> confetti.remove(),1000);
-    }
-    setTimeout(()=> { window.location.href = url; }, 500);
-  }
-</script>
 
 </body>
 </html>
