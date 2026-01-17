@@ -5,213 +5,99 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Menu Bonus Mobile Premium</title>
 <style>
-  * { box-sizing: border-box; margin:0; padding:0; }
-  body {
-    font-family: Arial, sans-serif;
-    background: #06162f;
-    color: #fff;
-    display: flex;
-    justify-content: center;
-    padding: 20px 0;
-  }
-  .bonus-menu {
-    background: #0c234a;
-    border-radius: 15px;
-    width: 90%;
-    max-width: 400px;
-    padding: 20px;
-    text-align: center;
-    box-shadow: 0 0 20px rgba(0,0,0,0.7);
-  }
-  .bonus-menu h1 {
-    color: #ffcc00;
-    margin-bottom: 20px;
-    font-size: 22px;
-  }
-  .bonus-item {
-    background: #0c234a;
-    margin: 15px 0;
-    border-radius: 12px;
-    padding: 15px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.3);
-  }
-  .bonus-item h2 {
-    color: #ffcc00;
-    margin-bottom: 12px;
-    font-size: 18px;
-  }
-  .bonus-buttons {
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
-    flex-wrap: wrap;
-  }
-  .bonus-button {
-    flex: 1 1 45%;
-    background: #ff9900;
-    color: #06162f;
-    border: none;
-    padding: 12px;
-    border-radius: 10px;
-    font-size: 15px;
-    cursor: pointer;
-    transition: all 0.2s;
-    min-width: 100px;
-  }
-  .bonus-button:hover {
-    background: #ffcc00;
-    transform: scale(1.05);
-  }
-  .banner-container {
-    position: relative;
-    cursor: pointer;
-    margin-bottom: 12px;
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-  }
-  .bonus-banner {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.3s;
-  }
-  .banner-container:hover .bonus-banner { transform: scale(1.05); }
-  .banner-overlay {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    padding: 10px 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0));
-    text-align: center;
-  }
-  .banner-overlay span {
-    color: #ffcc00;
-    font-weight: bold;
-    font-size: 16px;
-  }
-  .modal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0,0,0,0.6);
-    animation: fadeIn 0.3s;
-  }
-  .modal-content {
-    background-color: #0c234a;
-    margin: auto;
-    margin-top: auto;
-    border-radius: 15px 15px 0 0;
-    padding: 20px;
-    width: 95%;
-    max-width: 400px;
-    color: #00ffcc;
-    text-align: left;
-    white-space: pre-line;
-    position: relative;
-    animation: slideUp 0.3s;
-  }
-  .close-modal {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    color: #ffcc00;
-    font-size: 24px;
-    font-weight: bold;
-    cursor: pointer;
-  }
-  @keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
-  @keyframes slideUp { from {transform:translateY(100px); opacity:0;} to {transform:translateY(0); opacity:1;} }
-  .confetti {
-    position: fixed;
-    pointer-events: none;
-    width: 10px; height: 10px;
-    background: #ffcc00;
-    animation: fall 1s linear forwards;
-    z-index: 2000;
-  }
-  @keyframes fall {
-    0% {transform: translateY(0) rotate(0deg);}
-    100% {transform: translateY(500px) rotate(720deg); opacity:0;}
-  }
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:Arial,sans-serif;background:#06162f;color:#fff;display:flex;justify-content:center;padding:20px 0;}
+.bonus-menu{background:#0c234a;border-radius:15px;width:90%;max-width:400px;padding:20px;text-align:center;box-shadow:0 0 20px rgba(0,0,0,0.7);}
+.bonus-menu h1{color:#ffcc00;margin-bottom:20px;font-size:22px;}
+.bonus-item{background:#0c234a;margin:15px 0;border-radius:12px;padding:15px;box-shadow:0 0 10px rgba(0,0,0,0.3);}
+.bonus-item h2{color:#ffcc00;margin-bottom:12px;font-size:18px;}
+.bonus-buttons{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+.bonus-button{flex:1 1 45%;background:#ff9900;color:#06162f;border:none;padding:12px;border-radius:10px;font-size:15px;cursor:pointer;transition:all 0.2s;min-width:100px;}
+.bonus-button:hover{background:#ffcc00;transform:scale(1.05);}
+.banner-container{position:relative;cursor:pointer;margin-bottom:12px;border-radius:15px;overflow:hidden;box-shadow:0 4px 15px rgba(0,0,0,0.5);}
+.bonus-banner{width:100%;height:180px;object-fit:cover;display:block;transition:transform 0.3s;}
+.banner-container:hover .bonus-banner{transform:scale(1.05);}
+.banner-overlay{position:absolute;bottom:0;width:100%;padding:10px 0;background:linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0));text-align:center;}
+.banner-overlay span{color:#ffcc00;font-weight:bold;font-size:16px;}
+.modal{display:none;position:fixed;z-index:1000;left:0;bottom:0;width:100%;height:100%;overflow:auto;background-color:rgba(0,0,0,0.6);animation:fadeIn 0.3s;}
+.modal-content{background-color:#0c234a;margin:auto;margin-top:auto;border-radius:15px 15px 0 0;padding:20px;width:95%;max-width:400px;color:#00ffcc;text-align:left;white-space:pre-line;position:relative;animation:slideUp 0.3s;}
+.close-modal{position:absolute;top:10px;right:15px;color:#ffcc00;font-size:24px;font-weight:bold;cursor:pointer;}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+@keyframes slideUp{from{transform:translateY(100px);opacity:0;}to{transform:translateY(0);opacity:1;}}
+.confetti{position:fixed;pointer-events:none;width:10px;height:10px;background:#ffcc00;animation:fall 1s linear forwards;z-index:2000;}
+@keyframes fall{0%{transform:translateY(0) rotate(0deg);}100%{transform:translateY(500px) rotate(720deg);opacity:0;}}
 </style>
 </head>
 <body>
 
 <div class="bonus-menu">
-  <h1>🎁 Menu Bonus Mobile 🎁</h1>
+<h1>🎁 Menu Bonus Mobile 🎁</h1>
 
-  <!-- Bonus 1 -->
-  <div class="bonus-item">
-    <h2>FREECHIP 5.000</h2>
-    <div class="banner-container" onclick="toggleModal(freechipText)">
-      <img src="/images/freechip.jpg" alt="FREECHIP 5.000" class="bonus-banner">
-      <div class="banner-overlay"><span>🎁 FREECHIP 5.000</span></div>
-    </div>
-    <div class="bonus-buttons">
-      <button class="bonus-button" onclick="toggleModal(freechipText)">Detail</button>
-      <button class="bonus-button" onclick="claimBonus('FREECHIP 5.000')">Claim</button>
-    </div>
-  </div>
+<!-- Bonus 1 -->
+<div class="bonus-item">
+<h2>FREECHIP 5.000</h2>
+<div class="banner-container" onclick="toggleModal(freechipText)">
+<img src="images/freechip.jpg" class="bonus-banner" alt="Freechip">
+<div class="banner-overlay"><span>🎁 FREECHIP 5.000</span></div>
+</div>
+<div class="bonus-buttons">
+<button class="bonus-button" onclick="toggleModal(freechipText)">Detail</button>
+<button class="bonus-button" onclick="claimBonus('FREECHIP 5.000')">Claim</button>
+</div>
+</div>
 
-  <!-- Bonus 2 -->
-  <div class="bonus-item">
-    <h2>Bonus Jumat Berkah 30%</h2>
-    <div class="banner-container" onclick="toggleModal(jumatBerkahText)">
-      <img src="/images/jumat-berkah.jpg" alt="Bonus Jumat Berkah" class="bonus-banner">
-      <div class="banner-overlay"><span>🌙 Bonus Jumat Berkah 30%</span></div>
-    </div>
-    <div class="bonus-buttons">
-      <button class="bonus-button" onclick="toggleModal(jumatBerkahText)">Detail</button>
-      <button class="bonus-button" onclick="claimBonus('Bonus Jumat Berkah 30%')">Claim</button>
-    </div>
-  </div>
+<!-- Bonus 2 -->
+<div class="bonus-item">
+<h2>Bonus Jumat Berkah 30%</h2>
+<div class="banner-container" onclick="toggleModal(jumatBerkahText)">
+<img src="images/jumat-berkah.jpg" class="bonus-banner" alt="Jumat Berkah">
+<div class="banner-overlay"><span>🌙 Bonus Jumat Berkah 30%</span></div>
+</div>
+<div class="bonus-buttons">
+<button class="bonus-button" onclick="toggleModal(jumatBerkahText)">Detail</button>
+<button class="bonus-button" onclick="claimBonus('Bonus Jumat Berkah 30%')">Claim</button>
+</div>
+</div>
 
-  <!-- Bonus 3 -->
-  <div class="bonus-item">
-    <h2>WEEKEND SLOT - NO DROP!</h2>
-    <div class="banner-container" onclick="toggleModal(weekendSlotText)">
-      <img src="/images/weekendslotnodrop.jpg" alt="Weekend Slot" class="bonus-banner">
-      <div class="banner-overlay"><span>💥 WEEKEND SLOT - NO DROP!</span></div>
-    </div>
-    <div class="bonus-buttons">
-      <button class="bonus-button" onclick="toggleModal(weekendSlotText)">Detail</button>
-      <button class="bonus-button" onclick="claimBonus('WEEKEND SLOT - NO DROP!')">Claim</button>
-    </div>
-  </div>
+<!-- Bonus 3 -->
+<div class="bonus-item">
+<h2>WEEKEND SLOT - NO DROP!</h2>
+<div class="banner-container" onclick="toggleModal(weekendSlotText)">
+<img src="images/weekendslotnodrop.jpg" class="bonus-banner" alt="Weekend Slot">
+<div class="banner-overlay"><span>💥 WEEKEND SLOT - NO DROP!</span></div>
+</div>
+<div class="bonus-buttons">
+<button class="bonus-button" onclick="toggleModal(weekendSlotText)">Detail</button>
+<button class="bonus-button" onclick="claimBonus('WEEKEND SLOT - NO DROP!')">Claim</button>
+</div>
+</div>
 
-  <!-- Bonus 4 -->
-  <div class="bonus-item">
-    <h2>PROMO GAGAL TIDUR</h2>
-    <div class="banner-container" onclick="toggleModal(gagalTidurText)">
-      <img src="/images/gagal-tidur.jpg" alt="Promo Gagal Tidur" class="bonus-banner">
-      <div class="banner-overlay"><span>🥱 PROMO GAGAL TIDUR</span></div>
-    </div>
-    <div class="bonus-buttons">
-      <button class="bonus-button" onclick="toggleModal(gagalTidurText)">Detail</button>
-      <button class="bonus-button" onclick="claimBonus('PROMO GAGAL TIDUR')">Claim</button>
-    </div>
-  </div>
+<!-- Bonus 4 -->
+<div class="bonus-item">
+<h2>PROMO GAGAL TIDUR</h2>
+<div class="banner-container" onclick="toggleModal(gagalTidurText)">
+<img src="images/gagal-tidur.jpg" class="bonus-banner" alt="Gagal Tidur">
+<div class="banner-overlay"><span>🥱 PROMO GAGAL TIDUR</span></div>
+</div>
+<div class="bonus-buttons">
+<button class="bonus-button" onclick="toggleModal(gagalTidurText)">Detail</button>
+<button class="bonus-button" onclick="claimBonus('PROMO GAGAL TIDUR')">Claim</button>
+</div>
+</div>
 
 </div>
 
 <!-- Modal -->
 <div id="bonusModal" class="modal">
-  <div class="modal-content">
-    <span class="close-modal" onclick="toggleModal()">×</span>
-    <div id="modalText"></div>
-  </div>
+<div class="modal-content">
+<span class="close-modal" onclick="toggleModal()">×</span>
+<div id="modalText"></div>
+</div>
 </div>
 
 <script>
-  // Teks bonus
-  const freechipText = `🎁 FREECHIP 5.000 MENUNGGU!
+// Teks bonus
+const freechipText=`🎁 FREECHIP 5.000 MENUNGGU!
 Download aplikasi sekarang & chip langsung masuk! 🚀
 
 📌 Syarat & Ketentuan:
@@ -220,7 +106,7 @@ Download aplikasi sekarang & chip langsung masuk! 🚀
 3. Chip masuk otomatis setelah klaim.
 4. Berlaku hingga 23.59 WIB hari ini.`;
 
-  const jumatBerkahText = `🌙✨ Bonus Jumat Berkah 30% ✨🌙
+const jumatBerkahText=`🌙✨ Bonus Jumat Berkah 30% ✨🌙
 Dari Pkl 00.00 - 23.59 WIB 💰
 Depo min: 30K
 🎁 Bonus: 30% (max 300K)
@@ -230,7 +116,7 @@ Depo min: 30K
 2. Maksimal bonus 300K per akun.
 3. Wajib klaim sebelum pukul 23.59 WIB.`;
 
-  const weekendSlotText = `💥 Paket SLOT Nonstop suntik BONUS • Main Malam • Hadiah Gila! 💥
+const weekendSlotText=`💥 Paket SLOT Nonstop suntik BONUS • Main Malam • Hadiah Gila! 💥
 ⏰ Open Khusus Malam
 🗓️ Sabtu & Minggu
 🕛 00.00 – 04.00 WIB (Subuh)
@@ -240,7 +126,7 @@ Depo min: 30K
 2. Minimal deposit 50K.
 3. Maksimal payout sesuai ketentuan permainan.`;
 
-  const gagalTidurText = `🥱 PROMO GAGAL TIDUR 🥱
+const gagalTidurText=`🥱 PROMO GAGAL TIDUR 🥱
 MAIN SLOT BERHUJUNG MAXWIN! 💥
 
 📌 Syarat & Ketentuan:
@@ -248,35 +134,15 @@ MAIN SLOT BERHUJUNG MAXWIN! 💥
 2. Minimal deposit 20K.
 3. Hanya 1x klaim per akun.`;
 
-  // Modal
-  let modal = document.getElementById('bonusModal');
-  let modalText = document.getElementById('modalText');
+// Modal
+let modal=document.getElementById('bonusModal');
+let modalText=document.getElementById('modalText');
+function toggleModal(message=null){if(modal.style.display==="block"){modal.style.display="none";}else{modalText.textContent=message;modal.style.display="block";}}
+window.onclick=function(event){if(event.target==modal)toggleModal();}
 
-  function toggleModal(message = null) {
-    if(modal.style.display === "block") {
-      modal.style.display = "none";
-    } else {
-      modalText.textContent = message;
-      modal.style.display = "block";
-    }
-  }
-
-  window.onclick = function(event) {
-    if(event.target == modal) toggleModal();
-  }
-
-  // Claim bonus
-  function claimBonus(bonusName) {
-    alert(`🎉 Anda berhasil claim ${bonusName}! 🎉`);
-    for(let i=0;i<30;i++){
-      let confetti = document.createElement('div');
-      confetti.classList.add('confetti');
-      confetti.style.left = Math.random()*window.innerWidth + 'px';
-      confetti.style.background = `hsl(${Math.random()*360},100%,50%)`;
-      document.body.appendChild(confetti);
-      setTimeout(()=> confetti.remove(),1000);
-    }
-  }
+// Claim bonus
+function claimBonus(bonusName){alert(`🎉 Anda berhasil claim ${bonusName}! 🎉`);
+for(let i=0;i<30;i++){let confetti=document.createElement('div');confetti.classList.add('confetti');confetti.style.left=Math.random()*window.innerWidth+'px';confetti.style.background=`hsl(${Math.random()*360},100%,50%)`;document.body.appendChild(confetti);setTimeout(()=>confetti.remove(),1000);}}
 </script>
 
 </body>
