@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MAUSLOT</title>
+
 <style>
 body{
   font-family:'Orbitron',sans-serif;
@@ -13,8 +14,8 @@ body{
   align-items:center;
   background:#06162f url("./bg-mauslot.jpg") center/cover no-repeat;
   color:#fff;
-  overflow-x:hidden;
 }
+
 .menu{
   background: rgba(12,35,74,0.55);
   backdrop-filter: blur(25px);
@@ -22,37 +23,61 @@ body{
   padding:40px;
   text-align:center;
 }
+
 .menu img{width:260px;margin-bottom:20px;}
+
 .menu h1{
   color:#60a5fa;
   text-shadow:0 0 10px #60a5fa,0 0 20px #1e90ff;
   margin-bottom:30px;
 }
-button{
+
+/* BUTTON STYLE UNTUK <a> */
+.btn{
+  display:inline-block;
   width:260px;
   padding:14px;
   margin:10px 0;
-  border:none;
   border-radius:14px;
   font-size:16px;
   font-weight:600;
-  cursor:pointer;
-  transition:.3s;
+  text-decoration:none;
   color:#061021;
+  transition:.3s;
 }
-.btn-main{background: linear-gradient(135deg,#60a5fa,#1e90ff);}
-.btn-main:hover{transform:scale(1.05);box-shadow:0 0 20px #60a5fa;}
-.btn-play{background: linear-gradient(135deg,#facc15,#fde047);}
-.btn-play:hover{transform:scale(1.05);box-shadow:0 0 20px #fde047;}
+
+.btn-main{
+  background: linear-gradient(135deg,#60a5fa,#1e90ff);
+}
+.btn-main:hover{
+  transform:scale(1.05);
+  box-shadow:0 0 20px #60a5fa;
+}
+
+.btn-play{
+  background: linear-gradient(135deg,#facc15,#fde047);
+}
+.btn-play:hover{
+  transform:scale(1.05);
+  box-shadow:0 0 20px #fde047;
+}
 </style>
 </head>
+
 <body>
 
 <div class="menu">
   <img src="logo-mauslot.gif" alt="Logo MAUSLOT">
   <h1>Selamat Datang di MAUSLOT</h1>
-  <button class="btn-main" onclick="window.location.href='kalkulator.html'">⚽ Masuk Kalkulator Parlay</button>
-  <button class="btn-play" onclick="window.location.href='SpecialbonusMAUSLOT.html'">🎁 Special Bonus MAUSLOT</button>
+
+  <!-- LINK ASLI (AMAT AMAN DI HP) -->
+  <a href="kalkulator.html" class="btn btn-main">
+    ⚽ Masuk Kalkulator Parlay
+  </a>
+
+  <a href="SpecialbonusMAUSLOT.html" class="btn btn-play">
+    🎁 Special Bonus MAUSLOT
+  </a>
 </div>
 
 </body>
