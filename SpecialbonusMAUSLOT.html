@@ -6,24 +6,81 @@
 <title>Menu Bonus Mobile Premium</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif}
-body{background:#06162f;color:#fff;display:flex;flex-direction:column;align-items:center;padding:15px;}
+/* Background halaman */
+body{
+  background: url('bg-mauslot.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color:#fff;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding:15px;
+}
+
+/* Wrapper kartu */
 .wrapper{width:100%;max-width:400px;}
-.card{background:#0c234a;border-radius:15px;padding:15px;margin-bottom:15px;box-shadow:0 5px 15px rgba(0,0,0,.6);transition:0.3s;cursor:pointer;}
+
+/* Kartu bonus transparan */
+.card{
+  background: rgba(12,35,74,0.8); /* transparan */
+  border-radius:15px;
+  padding:15px;
+  margin-bottom:15px;
+  box-shadow:0 5px 15px rgba(0,0,0,.6);
+  transition:0.3s;
+  cursor:pointer;
+}
 .card:hover{transform:scale(1.02);}
 .card h2{color:#ffcc00;font-size:18px;margin-bottom:10px;text-align:center;}
 .banner{width:100%;height:180px;border-radius:12px;object-fit:cover;margin-bottom:10px;transition:0.3s;}
 .card:hover .banner{transform:scale(1.05);}
+
 .btns{display:flex;gap:10px;flex-wrap:wrap;}
 .btn{flex:1;padding:12px;border:none;border-radius:10px;font-weight:bold;cursor:pointer;transition:0.2s;}
 .detail{background:#1da1f2;color:#fff;}
 .detail:hover{background:#0d8de0;}
 .claim{background:#ffcc00;color:#06162f;}
 .claim:hover{background:#ff9900;}
-.back-main{background:#ff3300;color:#fff;width:100%;padding:12px;margin-bottom:15px;border-radius:10px;font-weight:bold;text-align:center;text-decoration:none;display:block;}
-.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:999;animation:fadeIn 0.3s;}
-.modal-box{background:#0c234a;border-radius:15px 15px 0 0;padding:20px;position:absolute;bottom:0;width:100%;max-height:85vh;overflow-y:auto;animation:slideUp 0.3s;}
+
+/* Tombol kembali ke menu utama */
+.back-main{
+  background:#ff3300;
+  color:#fff;
+  width:100%;
+  padding:12px;
+  margin-bottom:15px;
+  border-radius:10px;
+  font-weight:bold;
+  text-align:center;
+  text-decoration:none;
+  display:block;
+  text-shadow:1px 1px 2px rgba(0,0,0,0.5);
+}
+
+/* Modal transparan */
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.7);
+  z-index:999;
+  animation:fadeIn 0.3s;
+}
+.modal-box{
+  background: rgba(12,35,74,0.9); /* transparan */
+  border-radius:15px 15px 0 0;
+  padding:20px;
+  position:absolute;
+  bottom:0;
+  width:100%;
+  max-height:85vh;
+  overflow-y:auto;
+  animation:slideUp 0.3s;
+}
 .modal h3{color:#ffcc00;margin-bottom:10px;text-align:center;}
+
 .confetti{position:fixed;width:10px;height:10px;background:#ffcc00;pointer-events:none;animation:fall 1s linear forwards;z-index:2000;}
+
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
 @keyframes slideUp{from{transform:translateY(100px);opacity:0}to{transform:translateY(0);opacity:1}}
 @keyframes fall{0%{transform:translateY(0) rotate(0deg);}100%{transform:translateY(500px) rotate(720deg);opacity:0}}
@@ -31,7 +88,6 @@ body{background:#06162f;color:#fff;display:flex;flex-direction:column;align-item
 </head>
 <body>
 
-<!-- Tombol kembali ke index.html -->
 <a href="index.html" class="back-main">🏠 Kembali ke Menu Utama</a>
 
 <div class="wrapper">
@@ -80,39 +136,9 @@ body{background:#06162f;color:#fff;display:flex;flex-direction:column;align-item
 <div class="modal-box">
 <h3>Detail Bonus</h3>
 <pre id="text" style="white-space:pre-wrap;font-size:14px;"></pre>
-<!-- Tombol Kembali dari modal ke daftar bonus -->
 <button class="btn claim" style="width:100%;margin-top:15px;" onclick="closeModal()">Kembali ke Menu Bonus</button>
 </div>
 </div>
 
 <script>
-const freechip = `🎁 FREECHIP 5.000\n\n✔ Member baru\n✔ Minimal deposit 10K\n✔ 1x per akun & IP\n✔ Tidak bisa digabung promo lain\n✔ Wajib habiskan chip`;
-const jumat = `🌙 BONUS JUMAT BERKAH 30%\n\n⏰ Jumat 00.00 – 23.59 WIB\n💰 Min depo 30K\n🎁 Max bonus 300K\n✔ Klaim sebelum deposit`;
-const weekend = `🔥 WEEKEND SLOT NO DROP\n\n🗓 Sabtu & Minggu\n⏰ 00.00 – 04.00 WIB\n💰 Min depo 50K\n🎰 Slot only`;
-const gagal = `🥱 PROMO GAGAL TIDUR\n\n⏰ 22.00 – 05.00 WIB\n💰 Min depo 20K\n🎰 Slot only`;
-
-function openModal(t){
-  document.getElementById('text').innerText=t;
-  document.getElementById('modal').style.display='block';
-}
-
-function closeModal(){
-  document.getElementById('modal').style.display='none';
-}
-
-function claimBonus(name,url){
-  alert(`🎉 Anda berhasil claim ${name}! 🎉`);
-  for(let i=0;i<30;i++){
-    let c=document.createElement('div');
-    c.classList.add('confetti');
-    c.style.left=Math.random()*window.innerWidth+'px';
-    c.style.background=`hsl(${Math.random()*360},100%,50%)`;
-    document.body.appendChild(c);
-    setTimeout(()=>c.remove(),1000);
-  }
-  setTimeout(()=>{window.location.href=url},500);
-}
-</script>
-
-</body>
-</html>
+const freechip = `🎁 FREECHIP 5.000\
