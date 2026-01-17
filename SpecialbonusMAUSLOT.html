@@ -3,127 +3,70 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Menu Bonus</title>
-
+<title>Weekend Slot Bonus - Mobile Premium</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{
-  font-family:Arial, sans-serif;
-  background:#06162f;
-  color:#fff;
-  display:flex;
-  justify-content:center;
-  padding:15px
-}
-.wrapper{
-  width:100%;
-  max-width:400px
-}
-.card{
-  background:#0c234a;
-  border-radius:15px;
-  padding:15px;
-  margin-bottom:15px;
-  box-shadow:0 0 15px rgba(0,0,0,.6)
-}
-.card h2{
-  color:#ffcc00;
-  font-size:18px;
-  margin-bottom:10px
-}
-.banner{
-  width:100%;
-  height:180px;
-  object-fit:cover;
-  border-radius:12px;
-  margin-bottom:10px
-}
-.btns{
-  display:flex;
-  gap:10px
-}
-.btn{
-  flex:1;
-  padding:12px;
-  border:none;
-  border-radius:10px;
-  font-weight:bold;
-  cursor:pointer
-}
-.detail{background:#1da1f2;color:#fff}
-.claim{background:#ffcc00;color:#000}
-
-/* MODAL */
-.modal{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.7);
-  z-index:999
-}
-.modal-box{
-  background:#0c234a;
-  border-radius:15px 15px 0 0;
-  padding:20px;
-  position:absolute;
-  bottom:0;
-  width:100%;
-  max-height:85vh;
-  overflow-y:auto
-}
-.modal h3{color:#ffcc00;margin-bottom:10px}
-.close{
-  position:absolute;
-  top:10px;
-  right:15px;
-  font-size:22px;
-  cursor:pointer;
-  color:#ffcc00
-}
+*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif}
+body{background:#06162f;color:#fff;display:flex;justify-content:center;padding:15px;}
+.wrapper{width:100%;max-width:400px;}
+.card{background:#0c234a;border-radius:15px;padding:15px;margin-bottom:15px;box-shadow:0 5px 15px rgba(0,0,0,.6);transition:0.3s;cursor:pointer;}
+.card:hover{transform:scale(1.02);}
+.card h2{color:#ffcc00;font-size:18px;margin-bottom:10px;text-align:center;}
+.banner{width:100%;height:180px;border-radius:12px;object-fit:cover;margin-bottom:10px;transition:0.3s;}
+.card:hover .banner{transform:scale(1.05);}
+.btns{display:flex;gap:10px;flex-wrap:wrap;}
+.btn{flex:1;padding:12px;border:none;border-radius:10px;font-weight:bold;cursor:pointer;transition:0.2s;}
+.detail{background:#1da1f2;color:#fff;}
+.detail:hover{background:#0d8de0;}
+.claim{background:#ffcc00;color:#06162f;}
+.claim:hover{background:#ff9900;}
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:999;animation:fadeIn 0.3s;}
+.modal-box{background:#0c234a;border-radius:15px 15px 0 0;padding:20px;position:absolute;bottom:0;width:100%;max-height:85vh;overflow-y:auto;animation:slideUp 0.3s;}
+.modal h3{color:#ffcc00;margin-bottom:10px;text-align:center;}
+.close{position:absolute;top:10px;right:15px;font-size:22px;cursor:pointer;color:#ffcc00;}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes slideUp{from{transform:translateY(100px);opacity:0}to{transform:translateY(0);opacity:1}}
+.confetti{position:fixed;width:10px;height:10px;background:#ffcc00;pointer-events:none;animation:fall 1s linear forwards;z-index:2000;}
+@keyframes fall{0%{transform:translateY(0) rotate(0deg);}100%{transform:translateY(500px) rotate(720deg);opacity:0;}}
 </style>
 </head>
-
 <body>
 
 <div class="wrapper">
 
-<!-- FREECHIP -->
-<div class="card">
+<!-- Bonus Card Example -->
+<div class="card" onclick="openModal(freechip)">
 <h2>🎁 FREECHIP 5.000</h2>
-<img src="freechip.jpg" class="banner">
+<img src="freechip.jpg" class="banner" alt="Freechip">
 <div class="btns">
-<button class="btn detail" onclick="openModal(freechip)">Detail</button>
-<button class="btn claim" onclick="go()">Claim</button>
+<button class="btn detail" onclick="event.stopPropagation(); openModal(freechip)">Detail</button>
+<button class="btn claim" onclick="event.stopPropagation(); claimBonus('FREECHIP 5.000','https://urlmsshorten.com/telegram-official')">Claim</button>
 </div>
 </div>
 
-<!-- JUMAT BERKAH -->
-<div class="card">
+<div class="card" onclick="openModal(jumat)">
 <h2>🌙 Bonus Jumat Berkah 30%</h2>
-<img src="jumat.jpg" class="banner">
+<img src="jumat.jpg" class="banner" alt="Jumat Berkah">
 <div class="btns">
-<button class="btn detail" onclick="openModal(jumat)">Detail</button>
-<button class="btn claim" onclick="go()">Claim</button>
+<button class="btn detail" onclick="event.stopPropagation(); openModal(jumat)">Detail</button>
+<button class="btn claim" onclick="event.stopPropagation(); claimBonus('Bonus Jumat Berkah 30%','https://urlmsshorten.com/telegram-official')">Claim</button>
 </div>
 </div>
 
-<!-- WEEKEND SLOT -->
-<div class="card">
+<div class="card" onclick="openModal(weekend)">
 <h2>🔥 Weekend Slot No Drop</h2>
-<img src="weekendslot.jpg" class="banner">
+<img src="weekendslot.jpg" class="banner" alt="Weekend Slot">
 <div class="btns">
-<button class="btn detail" onclick="openModal(weekend)">Detail</button>
-<button class="btn claim" onclick="go()">Claim</button>
+<button class="btn detail" onclick="event.stopPropagation(); openModal(weekend)">Detail</button>
+<button class="btn claim" onclick="event.stopPropagation(); claimBonus('Weekend Slot','https://urlmsshorten.com/telegram-official')">Claim</button>
 </div>
 </div>
 
-<!-- GAGAL TIDUR -->
-<div class="card">
+<div class="card" onclick="openModal(gagal)">
 <h2>🥱 Promo Gagal Tidur</h2>
-<img src="gagaltidur.jpg" class="banner">
+<img src="gagaltidur.jpg" class="banner" alt="Gagal Tidur">
 <div class="btns">
-<button class="btn detail" onclick="openModal(gagal)">Detail</button>
-<button class="btn claim" onclick="go()">Claim</button>
+<button class="btn detail" onclick="event.stopPropagation(); openModal(gagal)">Detail</button>
+<button class="btn claim" onclick="event.stopPropagation(); claimBonus('Promo Gagal Tidur','https://urlmsshorten.com/telegram-official')">Claim</button>
 </div>
 </div>
 
@@ -134,56 +77,29 @@ body{
 <div class="modal-box">
 <span class="close" onclick="closeModal()">×</span>
 <h3>Detail Bonus</h3>
-<pre id="text" style="white-space:pre-wrap;font-size:14px"></pre>
+<pre id="text" style="white-space:pre-wrap;font-size:14px;"></pre>
 </div>
 </div>
 
 <script>
-const freechip = `
-🎁 FREECHIP 5.000
+const freechip = `🎁 FREECHIP 5.000\n\n✔ Member baru\n✔ Minimal deposit 10K\n✔ 1x per akun & IP\n✔ Tidak bisa digabung promo lain\n✔ Wajib habiskan chip`;
+const jumat = `🌙 BONUS JUMAT BERKAH 30%\n\n⏰ Jumat 00.00 – 23.59 WIB\n💰 Min depo 30K\n🎁 Max bonus 300K\n✔ Klaim sebelum deposit`;
+const weekend = `🔥 WEEKEND SLOT NO DROP\n\n🗓 Sabtu & Minggu\n⏰ 00.00 – 04.00 WIB\n💰 Min depo 50K\n🎰 Slot only`;
+const gagal = `🥱 PROMO GAGAL TIDUR\n\n⏰ 22.00 – 05.00 WIB\n💰 Min depo 20K\n🎰 Slot only`;
 
-✔ Member baru
-✔ Minimal deposit 10K
-✔ 1x per akun & IP
-✔ Tidak bisa digabung promo lain
-✔ Wajib habiskan chip
-`;
+function openModal(t){document.getElementById('text').innerText=t;document.getElementById('modal').style.display='block';}
+function closeModal(){document.getElementById('modal').style.display='none';}
 
-const jumat = `
-🌙 BONUS JUMAT BERKAH 30%
-
-⏰ Jumat 00.00 – 23.59 WIB
-💰 Min depo 30K
-🎁 Max bonus 300K
-✔ Klaim sebelum deposit
-`;
-
-const weekend = `
-🔥 WEEKEND SLOT NO DROP
-
-🗓 Sabtu & Minggu
-⏰ 00.00 – 04.00 WIB
-💰 Min depo 50K
-🎰 Slot only
-`;
-
-const gagal = `
-🥱 PROMO GAGAL TIDUR
-
-⏰ 22.00 – 05.00 WIB
-💰 Min depo 20K
-🎰 Slot only
-`;
-
-function openModal(t){
- document.getElementById('text').innerText=t;
- document.getElementById('modal').style.display='block'
-}
-function closeModal(){
- document.getElementById('modal').style.display='none'
-}
-function go(){
- location.href='https://urlmsshorten.com/telegram-official'
+function claimBonus(name,url){
+  alert(`🎉 Anda berhasil claim ${name}! 🎉`);
+  for(let i=0;i<30;i++){
+    let c=document.createElement('div');c.classList.add('confetti');
+    c.style.left=Math.random()*window.innerWidth+'px';
+    c.style.background=`hsl(${Math.random()*360},100%,50%)`;
+    document.body.appendChild(c);
+    setTimeout(()=>c.remove(),1000);
+  }
+  setTimeout(()=>{window.location.href=url},500);
 }
 </script>
 
