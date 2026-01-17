@@ -63,6 +63,39 @@
     transform: scale(1.05);
   }
 
+  /* Banner Premium 360x180 */
+  .banner-container {
+    position: relative;
+    cursor: pointer;
+    margin-bottom: 12px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+  }
+  .bonus-banner {
+    width: 100%;
+    height: 180px;        /* Tinggi fixed 180px */
+    object-fit: cover;     /* Crop otomatis */
+    display: block;
+    transition: transform 0.3s;
+  }
+  .banner-container:hover .bonus-banner {
+    transform: scale(1.05);
+  }
+  .banner-overlay {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 10px 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0));
+    text-align: center;
+  }
+  .banner-overlay span {
+    color: #ffcc00;
+    font-weight: bold;
+    font-size: 16px;
+  }
+
   /* Modal style */
   .modal {
     display: none;
@@ -116,7 +149,6 @@
     0% {transform: translateY(0) rotate(0deg);}
     100% {transform: translateY(500px) rotate(720deg); opacity:0;}
   }
-
 </style>
 </head>
 <body>
@@ -127,8 +159,12 @@
   <!-- Bonus 1: Freechip -->
   <div class="bonus-item">
     <h2>FREECHIP 5.000</h2>
+    <div class="banner-container" onclick="toggleModal('🎁 FREECHIP 5.000 MENUNGGU!\nDownload aplikasi sekarang & chip langsung masuk! 🚀\n\n📌 Syarat & Ketentuan:\n1. Berlaku 1x per akun.\n2. Minimal deposit 10K.\n3. Chip masuk otomatis setelah klaim.\n4. Berlaku hingga 23.59 WIB hari ini.')">
+      <img src="images/freechip.jpg" alt="FREECHIP 5000" class="bonus-banner">
+      <div class="banner-overlay"><span>🎁 FREECHIP 5.000</span></div>
+    </div>
     <div class="bonus-buttons">
-      <button class="bonus-button" onclick="toggleModal('🎁 FREECHIP 5.000 MENUNGGU!\nDownload aplikasi sekarang & chip langsung masuk! 🚀\n\n📌 Syarat & Ketentuan:\n1. Berlaku 1x per akun.\n2. Minimal deposit 10K.\n3. Chip masuk otomatis setelah klaim.\n4. Berlaku hingga 23.59 WIB hari ini.')">Detail</button>
+      <button class="bonus-button" onclick="toggleModal('🎁 FREECHIP 5.000 MENUNGGU!...')">Detail</button>
       <button class="bonus-button" onclick="claimBonus('FREECHIP 5.000')">Claim</button>
     </div>
   </div>
@@ -136,8 +172,12 @@
   <!-- Bonus 2: Bonus Jumat Berkah -->
   <div class="bonus-item">
     <h2>Bonus Jumat Berkah 30%</h2>
+    <div class="banner-container" onclick="toggleModal('🌙✨ Bonus Jumat Berkah 30% ✨🌙\nDari Pkl 00.00 - 23.59 WIB 💰\nDepo min: 30K\n🎁 Bonus: 30% (max 300K)\n\n📌 Syarat & Ketentuan:\n1. Hanya berlaku untuk deposit hari Jumat.\n2. Maksimal bonus 300K per akun.\n3. Wajib klaim sebelum pukul 23.59 WIB.')">
+      <img src="images/jumat-berkah.jpg" alt="Bonus Jumat Berkah" class="bonus-banner">
+      <div class="banner-overlay"><span>🌙 Bonus Jumat Berkah 30%</span></div>
+    </div>
     <div class="bonus-buttons">
-      <button class="bonus-button" onclick="toggleModal('🌙✨ Bonus Jumat Berkah 30% ✨🌙\nDari Pkl 00.00 - 23.59 WIB 💰\nDepo min: 30K\n🎁 Bonus: 30% (max 300K)\n\n📌 Syarat & Ketentuan:\n1. Hanya berlaku untuk deposit hari Jumat.\n2. Maksimal bonus 300K per akun.\n3. Wajib klaim sebelum pukul 23.59 WIB.')">Detail</button>
+      <button class="bonus-button" onclick="toggleModal('🌙✨ Bonus Jumat Berkah 30%...')">Detail</button>
       <button class="bonus-button" onclick="claimBonus('Bonus Jumat Berkah 30%')">Claim</button>
     </div>
   </div>
@@ -145,8 +185,12 @@
   <!-- Bonus 3: Weekend Slot -->
   <div class="bonus-item">
     <h2>WEEKEND SLOT - NO DROP!</h2>
+    <div class="banner-container" onclick="toggleModal('💥 Paket SLOT Nonstop suntik BONUS • Main Malam • Hadiah Gila! 💥\n⏰ Open Khusus Malam\n🗓️ Sabtu & Minggu\n🕛 00.00 – 04.00 WIB (Subuh)\n\n📌 Syarat & Ketentuan:\n1. Berlaku Sabtu & Minggu malam.\n2. Minimal deposit 50K.\n3. Maksimal payout sesuai ketentuan permainan.')">
+      <img src="images/weekendslotnodrop.jpg" alt="Weekend Slot" class="bonus-banner">
+      <div class="banner-overlay"><span>💥 WEEKEND SLOT - NO DROP!</span></div>
+    </div>
     <div class="bonus-buttons">
-      <button class="bonus-button" onclick="toggleModal('💥 Paket SLOT Nonstop suntik BONUS • Main Malam • Hadiah Gila! 💥\n⏰ Open Khusus Malam\n🗓️ Sabtu & Minggu\n🕛 00.00 – 04.00 WIB (Subuh)\n\n📌 Syarat & Ketentuan:\n1. Berlaku Sabtu & Minggu malam.\n2. Minimal deposit 50K.\n3. Maksimal payout sesuai ketentuan permainan.')">Detail</button>
+      <button class="bonus-button" onclick="toggleModal('💥 WEEKEND SLOT - NO DROP!...')">Detail</button>
       <button class="bonus-button" onclick="claimBonus('WEEKEND SLOT - NO DROP!')">Claim</button>
     </div>
   </div>
@@ -154,8 +198,12 @@
   <!-- Bonus 4: Promo Gagal Tidur -->
   <div class="bonus-item">
     <h2>PROMO GAGAL TIDUR</h2>
+    <div class="banner-container" onclick="toggleModal('🥱 PROMO GAGAL TIDUR 🥱\nMAIN SLOT BERHUJUNG MAXWIN! 💥\n\n📌 Syarat & Ketentuan:\n1. Berlaku untuk permainan slot malam hari.\n2. Minimal deposit 20K.\n3. Hanya 1x klaim per akun.')">
+      <img src="images/gagal-tidur.jpg" alt="Promo Gagal Tidur" class="bonus-banner">
+      <div class="banner-overlay"><span>🥱 PROMO GAGAL TIDUR</span></div>
+    </div>
     <div class="bonus-buttons">
-      <button class="bonus-button" onclick="toggleModal('🥱 PROMO GAGAL TIDUR 🥱\nMAIN SLOT BERHUJUNG MAXWIN! 💥\n\n📌 Syarat & Ketentuan:\n1. Berlaku untuk permainan slot malam hari.\n2. Minimal deposit 20K.\n3. Hanya 1x klaim per akun.')">Detail</button>
+      <button class="bonus-button" onclick="toggleModal('🥱 PROMO GAGAL TIDUR...')">Detail</button>
       <button class="bonus-button" onclick="claimBonus('PROMO GAGAL TIDUR')">Claim</button>
     </div>
   </div>
