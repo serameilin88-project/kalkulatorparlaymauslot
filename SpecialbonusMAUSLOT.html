@@ -3,80 +3,171 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Menu Bonus Mobile Premium</title>
+<title>Menu Bonus MAUSLOT</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif;}
+*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif}
+
+/* ===== BODY ===== */
 body{
-  background:url('bg-mauslot.jpg') no-repeat center center fixed;
-  background-size:cover;
+  background:url('bg-mauslot.jpg') center/cover fixed no-repeat;
   color:#fff;
+  padding:15px;
   display:flex;
   flex-direction:column;
   align-items:center;
-  padding:15px;
 }
-.wrapper{width:100%;max-width:400px;}
-.card{
-  background: rgba(12,35,74,0.8);
-  border-radius:15px;
-  padding:15px;
-  margin-bottom:15px;
-  box-shadow:0 5px 15px rgba(0,0,0,.6);
-  transition:0.3s;
-  cursor:pointer;
-}
-.card:hover{transform:scale(1.02);}
-.card h2{color:#ffcc00;font-size:18px;margin-bottom:10px;text-align:center;}
 
-/* Banner images seragam dan terlihat penuh */
+/* ===== GRID ===== */
+.wrapper{
+  width:100%;
+  max-width:900px;
+  display:grid;
+  grid-template-columns:1fr;
+  gap:15px;
+}
+@media(min-width:600px){
+  .wrapper{grid-template-columns:1fr 1fr;}
+}
+
+/* ===== CARD ===== */
+.card{
+  background:rgba(12,35,74,.88);
+  border-radius:16px;
+  padding:15px;
+  box-shadow:0 8px 20px rgba(0,0,0,.6);
+  cursor:pointer;
+  position:relative;
+  overflow:hidden;
+  animation:fadeUp .6s ease both;
+}
+.card:nth-child(1){animation-delay:.05s}
+.card:nth-child(2){animation-delay:.1s}
+.card:nth-child(3){animation-delay:.15s}
+.card:nth-child(4){animation-delay:.2s}
+
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(30px) scale(.97)}
+  to{opacity:1;transform:translateY(0) scale(1)}
+}
+
+/* Glow */
+.card::before{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  background:linear-gradient(120deg,transparent,rgba(255,204,0,.6),transparent);
+  opacity:0;
+  transition:.4s;
+}
+.card:hover::before{opacity:1;filter:blur(8px)}
+
+.card h2{
+  color:#ffcc00;
+  font-size:17px;
+  margin-bottom:10px;
+  text-align:center;
+}
+
+/* ===== IMAGE ===== */
 .banner{
   width:100%;
   height:180px;
+  object-fit:contain;
+  background:#0c234a;
   border-radius:12px;
-  object-fit:contain; /* menampilkan seluruh gambar tanpa terpotong */
-  background:#0c234a; /* warna latar saat ada space */
   margin-bottom:10px;
-  transition:0.3s;
+  transition:.3s;
 }
-.card:hover .banner{transform:scale(1.05);}
-@media (max-width:400px){
-  .banner{height:150px;}
+.card:hover .banner{transform:scale(1.05)}
+@media(max-width:400px){
+  .banner{height:150px}
 }
 
-.btns{display:flex;gap:10px;flex-wrap:wrap;}
-.btn{flex:1;padding:12px;border:none;border-radius:10px;font-weight:bold;cursor:pointer;transition:0.2s;}
-.detail{background:#1da1f2;color:#fff;}
-.detail:hover{background:#0d8de0;}
-.claim{background:#ffcc00;color:#06162f;}
-.claim:hover{background:#ff9900;}
-.back-main{
-  background:#ff3300;color:#fff;width:100%;padding:12px;margin-bottom:15px;border-radius:10px;
-  font-weight:bold;text-align:center;text-decoration:none;display:block;text-shadow:1px 1px 2px rgba(0,0,0,0.5);
+/* ===== BUTTON ===== */
+.btns{display:flex;gap:10px}
+.btn{
+  flex:1;
+  padding:12px;
+  border:none;
+  border-radius:10px;
+  font-weight:bold;
+  cursor:pointer;
+  transition:.2s;
 }
+
+/* Detail = biru */
+.detail{
+  background:#1da1f2;
+  color:#fff;
+}
+.detail:hover{background:#0d8de0}
+
+/* Claim = hijau */
+.claim{
+  background:#28a745;
+  color:#fff;
+  box-shadow:0 0 14px rgba(40,167,69,.6);
+}
+.claim:hover{
+  background:#1f8a3a;
+  box-shadow:0 0 22px rgba(40,167,69,.9);
+}
+
+/* ===== BACK BUTTON ===== */
+.back-main{
+  width:100%;
+  max-width:900px;
+  margin-bottom:15px;
+  padding:12px;
+  background:#1da1f2;
+  color:#fff;
+  text-align:center;
+  text-decoration:none;
+  border-radius:12px;
+  font-weight:bold;
+  box-shadow:0 4px 12px rgba(29,161,242,.6);
+}
+
+/* ===== MODAL ===== */
 .modal{
   display:none;
   position:fixed;
   inset:0;
   background:rgba(0,0,0,.7);
   z-index:999;
-  animation:fadeIn 0.3s;
 }
 .modal-box{
-  background: rgba(12,35,74,0.9);
-  border-radius:15px 15px 0 0;
-  padding:20px;
   position:absolute;
   bottom:0;
   width:100%;
   max-height:85vh;
-  overflow-y:auto;
-  animation:slideUp 0.3s;
+  background:rgba(12,35,74,.95);
+  padding:20px;
+  border-radius:16px 16px 0 0;
+  animation:slideUp .3s;
 }
-.modal h3{color:#ffcc00;margin-bottom:10px;text-align:center;}
-.confetti{position:fixed;width:10px;height:10px;background:#ffcc00;pointer-events:none;animation:fall 1s linear forwards;z-index:2000;}
-@keyframes fadeIn{from{opacity:0}to{opacity:1}}
-@keyframes slideUp{from{transform:translateY(100px);opacity:0}to{transform:translateY(0);opacity:1}}
-@keyframes fall{0%{transform:translateY(0) rotate(0deg);}100%{transform:translateY(500px) rotate(720deg);opacity:0}}
+@keyframes slideUp{
+  from{transform:translateY(100px);opacity:0}
+  to{transform:translateY(0);opacity:1}
+}
+.modal h3{
+  color:#ffcc00;
+  text-align:center;
+  margin-bottom:10px;
+}
+
+/* ===== CONFETTI ===== */
+.confetti{
+  position:fixed;
+  width:10px;
+  height:10px;
+  pointer-events:none;
+  animation:fall 1s linear forwards;
+  z-index:2000;
+}
+@keyframes fall{
+  to{transform:translateY(500px) rotate(720deg);opacity:0}
+}
 </style>
 </head>
 <body>
@@ -85,135 +176,103 @@ body{
 
 <div class="wrapper">
 
-<!-- Bonus FREECHIP -->
-<div class="card">
-  <h2>🎁 FREECHIP 5.000</h2>
-  <img src="ffreechip.jpg" class="banner" alt="Freechip">
-  <div class="btns">
-    <button class="btn detail" onclick="openModal('freechip')">Detail</button>
-    <button class="btn claim" onclick="claimBonus('FREECHIP 5.000','https://urlmsshorten.com/telegram-official')">Claim</button>
+  <!-- FREECHIP -->
+  <div class="card">
+    <h2>🎁 FREECHIP 5.000</h2>
+    <img src="ffreechip.jpg" class="banner">
+    <div class="btns">
+      <button class="btn detail" data-bonus="freechip">Detail</button>
+      <button class="btn claim" data-name="FREECHIP 5.000" data-url="https://urlmsshorten.com/telegram-official">Claim</button>
+    </div>
   </div>
-</div>
 
-<!-- Bonus Jumat Berkah -->
-<div class="card">
-  <h2>🌙 Bonus Jumat Berkah 30%</h2>
-  <img src="jumatberkah.jpg" class="banner" alt="Jumat Berkah">
-  <div class="btns">
-    <button class="btn detail" onclick="openModal('jumat')">Detail</button>
-    <button class="btn claim" onclick="claimBonus('Bonus Jumat Berkah 30%','https://urlmsshorten.com/telegram-official')">Claim</button>
+  <!-- JUMAT -->
+  <div class="card">
+    <h2>🌙 Bonus Jumat Berkah</h2>
+    <img src="jumatberkah.jpg" class="banner">
+    <div class="btns">
+      <button class="btn detail" data-bonus="jumat">Detail</button>
+      <button class="btn claim" data-name="Bonus Jumat" data-url="https://urlmsshorten.com/telegram-official">Claim</button>
+    </div>
   </div>
-</div>
 
-<!-- Weekend Slot No Drop -->
-<div class="card">
-  <h2>🔥 Weekend Slot No Drop</h2>
-  <img src="weekendslotnodrop.jpg" class="banner" alt="Weekend Slot">
-  <div class="btns">
-    <button class="btn detail" onclick="openModal('weekend')">Detail</button>
-    <button class="btn claim" onclick="claimBonus('Weekend Slot','https://urlmsshorten.com/telegram-official')">Claim</button>
+  <!-- WEEKEND -->
+  <div class="card">
+    <h2>🔥 Weekend Slot No Drop</h2>
+    <img src="weekendslotnodrop.jpg" class="banner">
+    <div class="btns">
+      <button class="btn detail" data-bonus="weekend">Detail</button>
+      <button class="btn claim" data-name="Weekend Slot" data-url="https://urlmsshorten.com/telegram-official">Claim</button>
+    </div>
   </div>
-</div>
 
-<!-- Promo Gagal Tidur -->
-<div class="card">
-  <h2>🥱 Promo Gagal Tidur</h2>
-  <img src="gagaltidur.jpg" class="banner" alt="Gagal Tidur">
-  <div class="btns">
-    <button class="btn detail" onclick="openModal('gagal')">Detail</button>
-    <button class="btn claim" onclick="claimBonus('Promo Gagal Tidur','https://urlmsshorten.com/telegram-official')">Claim</button>
+  <!-- GAGAL TIDUR -->
+  <div class="card">
+    <h2>🥱 Promo Gagal Tidur</h2>
+    <img src="gagaltidur.jpg" class="banner">
+    <div class="btns">
+      <button class="btn detail" data-bonus="gagal">Detail</button>
+      <button class="btn claim" data-name="Gagal Tidur" data-url="https://urlmsshorten.com/telegram-official">Claim</button>
+    </div>
   </div>
-</div>
 
 </div>
 
-<!-- Modal Detail -->
+<!-- MODAL -->
 <div class="modal" id="modal">
   <div class="modal-box">
     <h3>Detail Bonus</h3>
-    <pre id="text" style="white-space:pre-wrap;font-size:14px;"></pre>
-    <button class="btn claim" style="width:100%;margin-top:15px;" onclick="closeModal()">Kembali ke Menu Bonus</button>
+    <pre id="text" style="white-space:pre-wrap;font-size:14px"></pre>
+    <button class="btn detail" style="width:100%;margin-top:15px" id="closeModalBtn">Kembali</button>
   </div>
 </div>
 
 <script>
-const bonusDetails = {
-  freechip: `FREECHIP SIAP DIKLAIM SEKARANG! 
+document.addEventListener('DOMContentLoaded', function(){
 
-Download Aplikasi Resmi MAUSLOT
-Freechip langsung masuk ke akun
+  const bonusDetails={
+    freechip:`🎁 FREECHIP SIAP DIKLAIM SEKARANG!\n\nDownload Aplikasi Resmi MAUSLOT\nFreechip langsung masuk ke akun`,
+    jumat:`🌙 Bonus Jumat Berkah 30%\nDepo min 30K`,
+    weekend:`🔥 Weekend Slot No Drop\n00.00 – 04.00 WIB`,
+    gagal:`🥱 Promo Gagal Tidur\nMain malam berujung MAXWIN`
+  };
 
-Tanpa syarat ribet
-Langsung bisa dimainkan
-Peluang cuan makin terbuka lebar
+  const modal = document.getElementById('modal');
+  const text = document.getElementById('text');
+  const closeModalBtn = document.getElementById('closeModalBtn');
 
-Jangan sampai terlewat!
-Download sekarang & rasakan sensasi mainnya
-MAUSLOT – Download Sekarang, Menang Lebih Cepat!`,
-  jumat: `🌙✨ Bonus Jumat Berkah 30% ✨🌙
-Dari Pkl 00.00 - 23.59💰 
-Depo min: 30K
-🎁 Bonus: 30% (max 300K)`,
-  weekend: `🔥✨ WEEKEND SLOT – NO DROP! ✨🔥
-🎯 Paket Slot Nonstop, Bonus Tanpa Henti!
-
-🗓️ Periode Promo
-📆 Sabtu & Minggu
-⏰ 00.00 – 04.00 WIB (Subuh Time)
-
-🎁 PAKET MALAM
-💰 25K → 🎁 FREECHIP 5.000
-💰 50K → 🎁 Bonus + 2 Tiket Lucky Spin 🎡
-💰 100K → 🎁 Bonus 20% (Max 50K) ⭐️
-🔥 Prioritas WD
-
-✨ BONUS TAMBAHAN
-💳 Deposit 2x → 🎯 Double Chance
-🌙 Lucky Midnight → 🎡 Random Spinwheel
-
-⚠️ CATATAN PENTING
-⏳ Kuota terbatas — promo tutup otomatis jam 04.00 WIB
-🚀 Klaim sekarang sebelum kelewatan!`,
-  gagal: `🥱🔥 PROMO GAGAL TIDUR 🔥🥱
-MAIN SLOT BERUJUNG MAXWIN! 💥💰
-
-🎁 SUSUNAN HADIAH
-
-🌙 LEVEL 1 – NGANTUK TIPIS
-💳 Deposit 25K
-🎁 FREECHIP 3.000
-📌 Syarat: Login & main slot
-
-🌙 LEVEL 2 – MATA MULAI MERAH
-💳 Deposit 50K
-🎁 SPIN GRATIS / 2 TIKET LUCKY SPIN 🎡
-🔥 Khusus member yang masih aktif
-
-🌙 LEVEL 3 – BENAR-BENAR GAGAL TIDUR
-💳 Deposit 100K
-🎁 BONUS SLOT 10% (MAX 30K) 💣
-⚡️ Hadiah spesial stamina malam`
-};
-
-function openModal(key){
-  document.getElementById('text').innerText = bonusDetails[key];
-  document.getElementById('modal').style.display = 'block';
-}
-function closeModal(){
-  document.getElementById('modal').style.display = 'none';
-}
-function claimBonus(name,url){
-  alert(`🎉 Anda berhasil claim ${name}! 🎉`);
-  for(let i=0;i<30;i++){
-    let c=document.createElement('div');
-    c.classList.add('confetti');
-    c.style.left=Math.random()*window.innerWidth+'px';
-    c.style.background=`hsl(${Math.random()*360},100%,50%)`;
-    document.body.appendChild(c);
-    setTimeout(()=>c.remove(),1000);
+  function openModal(key){
+    text.innerText = bonusDetails[key];
+    modal.style.display = 'block';
   }
-  setTimeout(()=>{window.location.href=url},500);
-}
+
+  function closeModal(){
+    modal.style.display = 'none';
+  }
+
+  function claimBonus(name, url){
+    alert(`🎉 Claim ${name} berhasil!`);
+    for(let i=0;i<25;i++){
+      let c=document.createElement('div');
+      c.className='confetti';
+      c.style.left=Math.random()*window.innerWidth+'px';
+      c.style.background=`hsl(${Math.random()*360},100%,50%)`;
+      document.body.appendChild(c);
+      setTimeout(()=>c.remove(),1000);
+    }
+    setTimeout(()=>window.location.href=url,500);
+  }
+
+  // Pasang listener tombol Detail & Claim
+  document.querySelectorAll('.btn.detail').forEach(btn=>{
+    btn.addEventListener('click',()=>openModal(btn.dataset.bonus));
+  });
+  document.querySelectorAll('.btn.claim').forEach(btn=>{
+    btn.addEventListener('click',()=>claimBonus(btn.dataset.name, btn.dataset.url));
+  });
+  closeModalBtn.addEventListener('click', closeModal);
+
+});
 </script>
 
 </body>
